@@ -21,7 +21,7 @@ http://creativecommons.org/licenses/by/3.0/
 2008 Andreas Lagerkvist (andreaslagerkvist.com)
 
 @requires:
-jquery, jquery.colourPicker.css
+jquery, jquery.colourPicker.css, jquery.colourPicker.gif
 
 @does:
 Turns a drop-down (select-element) full of colours into a colour-picker-dialogue.
@@ -76,7 +76,7 @@ Use it like this: <select name="colours"><?php gwsc(); ?></select>.
 </p>
 
 @exampleJS:
-jQuery('#jquery-colour-picker-example select[name="colour_1"], #jquery-colour-picker-example select[name="colour_2"]').colourPicker();
+jQuery('#jquery-colour-picker-example select').colourPicker({ico: '/aFramework/Styles/__common/gfx/jquery.colourPicker.gif'});
 ***/
 jQuery.fn.colourPicker = function(conf) {
 	// Config for plug
