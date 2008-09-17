@@ -26,7 +26,7 @@ jQuery, jquery.colourPicker.css
 @does:
 Turns a drop-down (select-element) full of colours into a colour-picker-dialogue.
 
-@usage:
+@howto:
 jQuery('select[name="colour"]').colourPicker({ico: 'my-icon.gif', title: 'Select a colour from the list'}); Would replace the select with 'my-icon.gif' which, when clicked, would open a dialogue with the title 'Select a colour from the list'.
 
 You can use this PHP-function to generate a list of "web-safe" colours:
@@ -49,16 +49,34 @@ function gwsc() {
 Use it like this: <select name="colours"><?php gwsc(); ?></select>.
 
 @exampleHTML:
-<select name="colour">
-	<option value="ffffff">White</option>
-	<option value="ff0000">Red</option>
-	<option value="00ff00">Green</option>
-	<option value="0000ff">Blue</option>
-	<option value="000000">Black</option>
-</select>
+<p>
+	<label>
+		Pick a colour<br />
+		<select name="colour_1">
+			<option value="ffffff">White</option>
+			<option value="ff0000">Red</option>
+			<option value="00ff00">Green</option>
+			<option value="0000ff">Blue</option>
+			<option value="000000">Black</option>
+		</select>
+	</label>
+</p>
+
+<p>
+	<label>
+		And one more<br />
+		<select name="colour_2">
+			<option value="ffffff">White</option>
+			<option value="ff0000">Red</option>
+			<option value="00ff00">Green</option>
+			<option value="0000ff">Blue</option>
+			<option value="000000">Black</option>
+		</select>
+	</label>
+</p>
 
 @exampleJS:
-jQuery('#jquery-colour-picker-example select[name="colour"]').colourPicker();
+jQuery('#jquery-colour-picker-example select[name="colour_1"], #jquery-colour-picker-example select[name="colour_2"]').colourPicker();
 ***/
 jQuery.fn.colourPicker = function(conf) {
 	// Config for plug
