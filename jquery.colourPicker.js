@@ -21,7 +21,7 @@ http://creativecommons.org/licenses/by/3.0/
 2008 Andreas Lagerkvist (andreaslagerkvist.com)
 
 @requires:
-jquery, jquery.colourPicker.css, jquery.colourPicker.gif
+jquery, jquery.colourPicker.css
 
 @does:
 Turns a drop-down (select-element) full of colours into a colour-picker-dialogue.
