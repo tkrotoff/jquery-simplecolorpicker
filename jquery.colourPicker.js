@@ -46,7 +46,7 @@ function gwsc() {
 }
 [/code]
 
-Use it like this: <select name="colours"><?php gwsc(); ?></select>.
+Use it like this: <select name="colour"><?php gwsc(); ?></select>.
 
 @exampleHTML:
 <p>
@@ -101,7 +101,7 @@ jQuery.fn.colourPicker = function(conf) {
 	var colourPicker = jQuery('#' +config.ID);
 
 	if(!colourPicker.length) {
-		colourPicker = jQuery('<div id="' +config.ID +'"></div>').appendTo('body').hide();
+		colourPicker = jQuery('<div id="' +config.ID +'"></div>').appendTo(document.body).hide();
 
 		// Remove the colour-picker if you click outside it (on body)
 		jQuery(document.body).click(function(event) {
@@ -115,7 +115,7 @@ jQuery.fn.colourPicker = function(conf) {
 	return this.each(function() {
 		// Insert icon and input
 		var select	= jQuery(this);
-		var icon	= jQuery('<a href="#" class="colour-picker-open"><img src="' +config.ico +'" alt="Open Colour-Picker" /></a>').insertAfter(select);
+		var icon	= jQuery('<a href="#"><img src="' +config.ico +'" alt="Open colour picker" /></a>').insertAfter(select);
 		var input	= jQuery('<input type="text" name="' +select.attr('name') +'" size="6" />').insertAfter(select);
 		var iconPos = icon.offset();
 		var loc		= '';
