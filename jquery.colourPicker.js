@@ -21,15 +21,17 @@ http://creativecommons.org/licenses/by/3.0/
 2008 Andreas Lagerkvist (andreaslagerkvist.com)
 
 @requires:
-jquery, jquery.colourPicker.css
+jquery, jquery.colourPicker.css, jquery.colourPicker.gif
 
 @does:
-Turns a drop-down (select-element) full of colours into a colour-picker-dialogue.
+Turns a drop-down (select-element) full of colours into a colour-picker-widget.
 
 @howto:
 jQuery('select[name="colour"]').colourPicker({ico: 'my-icon.gif', title: 'Select a colour from the list'}); Would replace the select with 'my-icon.gif' which, when clicked, would open a dialogue with the title 'Select a colour from the list'.
 
-You can use this PHP-function to generate a list of "web-safe" colours:
+You can close the colour-picker without selecting a colour by clicking anywhere outside the colour-picker box.
+
+Here's a handy PHP-function to generate a list of "web-safe" colours:
 
 [code]
 function gwsc() {
@@ -117,7 +119,6 @@ jQuery.fn.colourPicker = function(conf) {
 		var select	= jQuery(this);
 		var icon	= jQuery('<a href="#"><img src="' +config.ico +'" alt="Open colour picker" /></a>').insertAfter(select);
 		var input	= jQuery('<input type="text" name="' +select.attr('name') +'" size="6" />').insertAfter(select);
-		var iconPos = icon.offset();
 		var loc		= '';
 
 		// Build a list of colours based on the colours in the select
@@ -131,6 +132,8 @@ jQuery.fn.colourPicker = function(conf) {
 
 		// Remove select
 		select.remove();
+
+		var iconPos = icon.offset();
 
 		// When you click the icon
 		icon.click(function() {
