@@ -78,7 +78,7 @@ Use it like this: <select name="colour"><?php gwsc(); ?></select>.
 </p>
 
 @exampleJS:
-jQuery('#jquery-colour-picker-example select').colourPicker({ico: '/aFramework/Styles/__common/gfx/jquery.colourPicker.gif'});
+jQuery('#jquery-colour-picker-example select').colourPicker({ico: WEBROOT +'aFramework/Styles/__common/gfx/jquery.colourPicker.gif'});
 ***/
 jQuery.fn.colourPicker = function(conf) {
 	// Config for plug
