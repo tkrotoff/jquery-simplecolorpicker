@@ -92,11 +92,11 @@ jQuery.fn.colourPicker = function(conf) {
 
 	// Inverts a hex-colour
 	var hexInvert = function(hex) {
-		return 'ffffff'; // Todo...
-
 		var r = hex.substr(0, 2);
 		var g = hex.substr(2, 2);
 		var b = hex.substr(4, 2);
+
+		return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
 	};
 
 	// Add the colour-picker dialogue if not added
