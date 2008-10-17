@@ -118,7 +118,7 @@ jQuery.fn.colourPicker = function(conf) {
 		// Insert icon and input
 		var select	= jQuery(this);
 		var icon	= jQuery('<a href="#"><img src="' +config.ico +'" alt="Open colour picker" /></a>').insertAfter(select);
-		var input	= jQuery('<input type="text" name="' +select.attr('name') +'" size="6" />').insertAfter(select);
+		var input	= jQuery('<input type="text" name="' +select.attr('name') +'" value="' +select.val() +'" size="6" />').insertAfter(select);
 		var loc		= '';
 
 		// Build a list of colours based on the colours in the select
@@ -151,6 +151,9 @@ jQuery.fn.colourPicker = function(conf) {
 				if(config.inputBG) {
 					input.css({background: '#' +hex, color: '#' +hexInvert(hex)});
 				}
+
+				// Trigger change-event on input
+				input.change();
 
 				// Hide the colour-picker and return false
 				colourPicker.hide(config.speed);
