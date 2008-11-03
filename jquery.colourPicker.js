@@ -83,11 +83,11 @@ jQuery('#jquery-colour-picker-example select').colourPicker({ico: WEBROOT +'aFra
 jQuery.fn.colourPicker = function(conf) {
 	// Config for plug
 	var config = jQuery.extend({
-		ID:			'colour-picker',	// ID of colour-picker container
-		ico:		'ico.gif',			// SRC to colour-picker icon
+		ID:		'colour-picker',	// ID of colour-picker container
+		ico:		'ico.gif',		// SRC to colour-picker icon
 		title:		'Pick a colour',	// Default dialogue title
-		inputBG:	true,				// Whether to change the input's background to the selected colour's
-		speed:		500					// Speed of dialogue-animation
+		inputBG:	true,			// Whether to change the input's background to the selected colour's
+		speed:		500			// Speed of dialogue-animation
 	}, conf);
 
 	// Inverts a hex-colour
@@ -133,12 +133,20 @@ jQuery.fn.colourPicker = function(conf) {
 		// Remove select
 		select.remove();
 
-		var iconPos = icon.offset();
+		// If user wants to, change the input's BG to reflect the newly selected colour
+		if(config.inputBG) {
+			input.change(function() {
+				input.css({background: '#' +input.val(), color: '#' +hexInvert(input.val())});
+			});
+		}
 
 		// When you click the icon
 		icon.click(function() {
 			// Show the colour-picker next to the icon and fill it with the colours in the select that used to be there
-			colourPicker.html('<h2>' +config.title +'</h2><ul>' +loc +'</ul>').css({position: 'absolute', left: iconPos.left +'px', top: iconPos.top +'px'}).show(config.speed);
+			var iconPos	= icon.offset();
+			var heading	= config.title ? '<h2>' +config.title +'</h2>' : '';
+
+			colourPicker.html(heading +'<ul>' +loc +'</ul>').css({position: 'absolute', left: iconPos.left +'px', top: iconPos.top +'px'}).show(config.speed);
 
 			// When you click a colour in the colour-picker
 			jQuery('a', colourPicker).click(function() {
