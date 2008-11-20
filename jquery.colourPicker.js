@@ -83,11 +83,12 @@ jQuery('#jquery-colour-picker-example select').colourPicker({ico: WEBROOT +'aFra
 jQuery.fn.colourPicker = function(conf) {
 	// Config for plug
 	var config = jQuery.extend({
-		ID:		'colour-picker',	// ID of colour-picker container
-		ico:		'ico.gif',		// SRC to colour-picker icon
+		id:			'colour-picker',	// id of colour-picker container
+		ico:		'ico.gif',			// SRC to colour-picker icon
 		title:		'Pick a colour',	// Default dialogue title
-		inputBG:	true,			// Whether to change the input's background to the selected colour's
-		speed:		500			// Speed of dialogue-animation
+		inputBG:	true,				// Whether to change the input's background to the selected colour's
+		speed:		500,				// Speed of dialogue-animation
+		openTxt:	'Open colour picker'
 	}, conf);
 
 	// Inverts a hex-colour
@@ -100,14 +101,14 @@ jQuery.fn.colourPicker = function(conf) {
 	};
 
 	// Add the colour-picker dialogue if not added
-	var colourPicker = jQuery('#' +config.ID);
+	var colourPicker = jQuery('#' +config.id);
 
 	if(!colourPicker.length) {
-		colourPicker = jQuery('<div id="' +config.ID +'"></div>').appendTo(document.body).hide();
+		colourPicker = jQuery('<div id="' +config.id +'"></div>').appendTo(document.body).hide();
 
 		// Remove the colour-picker if you click outside it (on body)
 		jQuery(document.body).click(function(event) {
-			if(!(jQuery(event.target).is('#' +config.ID) || jQuery(event.target).parents('#' +config.ID).length)) {
+			if(!(jQuery(event.target).is('#' +config.id) || jQuery(event.target).parents('#' +config.id).length)) {
 				colourPicker.hide(config.speed);
 			}
 		});
@@ -117,7 +118,7 @@ jQuery.fn.colourPicker = function(conf) {
 	return this.each(function() {
 		// Insert icon and input
 		var select	= jQuery(this);
-		var icon	= jQuery('<a href="#"><img src="' +config.ico +'" alt="Open colour picker" /></a>').insertAfter(select);
+		var icon	= jQuery('<a href="#"><img src="' +config.ico +'" alt="' +config.openTxt +'" /></a>').insertAfter(select);
 		var input	= jQuery('<input type="text" name="' +select.attr('name') +'" value="' +select.val() +'" size="6" />').insertAfter(select);
 		var loc		= '';
 
