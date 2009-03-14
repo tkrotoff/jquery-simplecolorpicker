@@ -1,48 +1,48 @@
 #jquery-colour-picker {
-        background: #fafafa;
-        border: 1px solid #666;
-        padding: 20px 10px 15px 15px;
-        width: 300px;
+	background: #fafafa;
+	border: 1px solid #666;
+	padding: 20px 10px 15px 15px;
+	width: 300px;
 
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        box-shadow: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	box-shadow: 10px;
 
-        z-index: 99;
+	z-index: 99;
 }
 
-        #jquery-colour-picker h2 {
-                margin: 0 0 15px 0;
-        }
-        
-        #jquery-colour-picker ul {
-                margin: 0;
-                padding: 0;
-                list-style-type: none;
-                
-                +zoom: 1;
-        }
-        
-        #jquery-colour-picker ul:after {
-                content: ".";
-                display: block;
-                height: 0;
-                visibility: hidden;
-                clear: both;
-        }
-        
-                #jquery-colour-picker ul li {
-                        float: left;
-                        margin: 0 5px 5px 0;
-                }
-                
-                        #jquery-colour-picker ul li a {
-                                display: block;
-                                width: 13px;
-                                height: 13px;
-                                border: 1px solid #000;
-                                outline: 0;
-                                text-decoration: none;
-                                text-indent: -100000px;
-                        }
+	#jquery-colour-picker h2 {
+		margin: 0 0 15px 0;
+	}
+
+	#jquery-colour-picker ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		+zoom: 1;
+	}
+
+	#jquery-colour-picker ul:after {
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+		clear: both;
+	}
+
+		#jquery-colour-picker ul li {
+			float: left;
+			margin: 0 5px 5px 0;
+		}
+
+			#jquery-colour-picker ul li a {
+				display: block;
+				width: 13px;
+				height: 13px;
+				border: 1px solid #000;
+				outline: 0;
+				text-decoration: none;
+				text-indent: -100000px;
+			}
