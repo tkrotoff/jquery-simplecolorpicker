@@ -80,7 +80,7 @@ Use it like this: <select name="colour"><?php gwsc(); ?></select>.
 @exampleJS:
 jQuery('#jquery-colour-picker-example select').colourPicker({ico: WEBROOT +'aFramework/Styles/__common/gfx/jquery.colourPicker.gif'});
 ***/
-jQuery.fn.colourPicker = function ( conf ) {
+jQuery.fn.colourPicker = function (conf) {
 	// Config for plug
 	var config = jQuery.extend({
 		id:			'jquery-colour-picker',	// id of colour-picker container
@@ -92,7 +92,7 @@ jQuery.fn.colourPicker = function ( conf ) {
 	}, conf);
 
 	// Inverts a hex-colour
-	var hexInvert = function ( hex ) {
+	var hexInvert = function (hex) {
 		var r = hex.substr(0, 2);
 		var g = hex.substr(2, 2);
 		var b = hex.substr(4, 2);
@@ -101,14 +101,14 @@ jQuery.fn.colourPicker = function ( conf ) {
 	};
 
 	// Add the colour-picker dialogue if not added
-	var colourPicker = jQuery('#' +config.id);
+	var colourPicker = jQuery('#' + config.id);
 
-	if ( !colourPicker.length ) {
-		colourPicker = jQuery('<div id="' +config.id +'"></div>').appendTo(document.body).hide();
+	if (!colourPicker.length) {
+		colourPicker = jQuery('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
 
 		// Remove the colour-picker if you click outside it (on body)
 		jQuery(document.body).click(function(event) {
-			if ( !(jQuery(event.target).is('#' +config.id) || jQuery(event.target).parents('#' +config.id).length) ) {
+			if (!(jQuery(event.target).is('#' + config.id) || jQuery(event.target).parents('#' + config.id).length)) {
 				colourPicker.hide(config.speed);
 			}
 		});
@@ -145,7 +145,7 @@ jQuery.fn.colourPicker = function ( conf ) {
 		select.remove();
 
 		// If user wants to, change the input's BG to reflect the newly selected colour
-		if ( config.inputBG ) {
+		if (config.inputBG) {
 			input.change(function () {
 				input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
 			});
@@ -171,7 +171,7 @@ jQuery.fn.colourPicker = function ( conf ) {
 				input.val(hex);
 
 				// If user wants to, change the input's BG to reflect the newly selected colour
-				if ( config.inputBG ) {
+				if (config.inputBG) {
 					input.css({background: '#' + hex, color: '#' + hexInvert(hex)});
 				}
 
