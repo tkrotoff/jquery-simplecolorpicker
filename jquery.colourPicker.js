@@ -78,16 +78,19 @@ Use it like this: <select name="colour"><?php gwsc(); ?></select>.
 </p>
 
 @exampleJS:
-jQuery('#jquery-colour-picker-example select').colourPicker({ico: WEBROOT +'aFramework/Styles/__common/gfx/jquery.colourPicker.gif'});
+jQuery('#jquery-colour-picker-example select').colourPicker({
+	ico:	WEBROOT +'aFramework/Styles/gfx/jquery.colourPicker.gif', 
+	title:	false
+});
 ***/
 jQuery.fn.colourPicker = function(conf) {
 	// Config for plug
 	var config = jQuery.extend({
-		ID:		'colour-picker',	// ID of colour-picker container
-		ico:		'ico.gif',		// SRC to colour-picker icon
-		title:		'Pick a colour',	// Default dialogue title
-		inputBG:	true,			// Whether to change the input's background to the selected colour's
-		speed:		500,			// Speed of dialogue-animation
+		ID:					'colour-picker',	// ID of colour-picker container
+		ico:				'ico.gif',			// SRC to colour-picker icon
+		title:				'Pick a colour',	// Default dialogue title
+		inputBG:			true,				// Whether to change the input's background to the selected colour's
+		speed:				500,				// Speed of dialogue-animation
 		allowTransparent:	false, 
 		transparentTxt:		'Transparent', 
 		transparentVal:		''
