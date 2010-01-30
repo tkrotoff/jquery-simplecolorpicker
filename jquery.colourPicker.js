@@ -103,7 +103,7 @@ Use it like this: <select name="colour"><?php gwsc(); ?></select>.
 			<option value="343434">#343434</option>
 			<option value="680100">#680100</option>
 			<option value="963400">#963400</option>
-			<option value="986536">#986536</option>
+			<option value="986536" selected="selected">#986536</option>
 			<option value="646809">#646809</option>
 			<option value="036400">#036400</option>
 			<option value="34696d">#34696d</option>
@@ -197,6 +197,8 @@ jQuery.fn.colourPicker = function (conf) {
 			input.change(function () {
 				input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
 			});
+
+			input.change();
 		}
 
 		// When you click the icon
