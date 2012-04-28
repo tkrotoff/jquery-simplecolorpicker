@@ -1,6 +1,6 @@
 /***
 @title:
-Colour Picker
+Color Picker
 
 @version:
 2.0
@@ -21,17 +21,17 @@ http://creativecommons.org/licenses/by/3.0/
 2008 Andreas Lagerkvist (andreaslagerkvist.com)
 
 @requires:
-jquery, jquery.colourPicker.css, jquery.colourPicker.gif
+jquery, jquery.colorpicker.css
 
 @does:
-Use this plug-in on a normal <select>-element filled with colours to turn it in to a colour-picker widget that allows users to view all the colours in the drop-down as well as enter their own, preferred, custom colour. Only about 1k compressed.
+Use this plug-in on a normal <select>-element filled with colors to turn it in to a color-picker widget that allows users to view all the colors in the drop-down as well as enter their own, preferred, custom color. Only about 1k compressed.
 
 @howto:
-jQuery('select[name="colour"]').colourPicker({ico: 'my-icon.gif', title: 'Select a colour from the list'}); Would replace the select with 'my-icon.gif' which, when clicked, would open a dialogue with the title 'Select a colour from the list'.
+jQuery('select[name="color"]').colorpicker({ico: 'my-icon.gif', title: 'Select a color from the list'}); Would replace the select with 'my-icon.gif' which, when clicked, would open a dialogue with the title 'Select a color from the list'.
 
-You can close the colour-picker without selecting a colour by clicking anywhere outside the colour-picker box.
+You can close the color-picker without selecting a color by clicking anywhere outside the color-picker box.
 
-Here's a handy PHP-function to generate a list of "web-safe" colours:
+Here's a handy PHP-function to generate a list of "web-safe" colors:
 
 [code]
 function gwsc() {
@@ -48,13 +48,13 @@ function gwsc() {
 }
 [/code]
 
-Use it like this: <select name="colour"><?php gwsc(); ?></select>.
+Use it like this: <select name="color"><?php gwsc(); ?></select>.
 
 @exampleHTML:
 <p>
 	<label>
-		Pick a colour<br />
-		<select name="colour">
+		Pick a color<br />
+		<select name="color">
 			<option value="ffffff">#ffffff</option>
 			<option value="ffccc9">#ffccc9</option>
 			<option value="ffce93">#ffce93</option>
@@ -123,23 +123,22 @@ Use it like this: <select name="colour"><?php gwsc(); ?></select>.
 </p>
 
 @exampleJS:
-jQuery('#jquery-colour-picker-example select').colourPicker({
-	ico:	WEBROOT +'aFramework/Styles/gfx/jquery.colourPicker.gif', 
+jQuery('#jquery-colorpicker-example select').colorpicker({
 	title:	false
 });
 ***/
-jQuery.fn.colourPicker = function (conf) {
+jQuery.fn.colorpicker = function (conf) {
 	// Config for plug
 	var config = jQuery.extend({
-		id:			'jquery-colour-picker',	// id of colour-picker container
-		ico:		'ico.gif',				// SRC to colour-picker icon
-		title:		'Pick a colour',		// Default dialogue title
-		inputBG:	true,					// Whether to change the input's background to the selected colour's
+		id:			'jquery-colorpicker',	// id of color-picker container
+		ico:		'ico.gif',				// SRC to color-picker icon
+		title:		'Pick a color',		// Default dialogue title
+		inputBG:	true,					// Whether to change the input's background to the selected color's
 		speed:		500,					// Speed of dialogue-animation
-		openTxt:	'Open colour picker'
+		openTxt:	'Open color picker'
 	}, conf);
 
-	// Inverts a hex-colour
+	// Inverts a hex-color
 	var hexInvert = function (hex) {
 		var r = hex.substr(0, 2);
 		var g = hex.substr(2, 2);
@@ -148,16 +147,16 @@ jQuery.fn.colourPicker = function (conf) {
 		return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
 	};
 
-	// Add the colour-picker dialogue if not added
-	var colourPicker = jQuery('#' + config.id);
+	// Add the color-picker dialogue if not added
+	var colorpicker = jQuery('#' + config.id);
 
-	if (!colourPicker.length) {
-		colourPicker = jQuery('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
+	if (!colorpicker.length) {
+		colorpicker = jQuery('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
 
-		// Remove the colour-picker if you click outside it (on body)
+		// Remove the color-picker if you click outside it (on body)
 		jQuery(document.body).click(function(event) {
 			if (!(jQuery(event.target).is('#' + config.id) || jQuery(event.target).parents('#' + config.id).length)) {
-				colourPicker.hide(config.speed);
+				colorpicker.hide(config.speed);
 			}
 		});
 	}
@@ -170,7 +169,7 @@ jQuery.fn.colourPicker = function (conf) {
 		var input	= jQuery('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
 		var loc		= '';
 
-		// Build a list of colours based on the colours in the select
+		// Build a list of colors based on the colors in the select
 		jQuery('option', select).each(function () {
 			var option	= jQuery(this);
 			var hex		= option.val();
@@ -182,7 +181,7 @@ jQuery.fn.colourPicker = function (conf) {
 					+ hex 
 					+ '" style="background: #' 
 					+ hex 
-					+ '; colour: ' 
+					+ '; color: '
 					+ hexInvert(hex) 
 					+ ';">' 
 					+ title 
@@ -192,7 +191,7 @@ jQuery.fn.colourPicker = function (conf) {
 		// Remove select
 		select.remove();
 
-		// If user wants to, change the input's BG to reflect the newly selected colour
+		// If user wants to, change the input's BG to reflect the newly selected color
 		if (config.inputBG) {
 			input.change(function () {
 				input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
@@ -203,24 +202,24 @@ jQuery.fn.colourPicker = function (conf) {
 
 		// When you click the icon
 		icon.click(function () {
-			// Show the colour-picker next to the icon and fill it with the colours in the select that used to be there
+			// Show the color-picker next to the icon and fill it with the colors in the select that used to be there
 			var iconPos	= icon.offset();
 			var heading	= config.title ? '<h2>' + config.title + '</h2>' : '';
 
-			colourPicker.html(heading + '<ul>' + loc + '</ul>').css({
+			colorpicker.html(heading + '<ul>' + loc + '</ul>').css({
 				position: 'absolute', 
 				left: iconPos.left + 'px', 
 				top: iconPos.top + 'px'
 			}).show(config.speed);
 
-			// When you click a colour in the colour-picker
-			jQuery('a', colourPicker).click(function () {
+			// When you click a color in the color-picker
+			jQuery('a', colorpicker).click(function () {
 				// The hex is stored in the link's rel-attribute
 				var hex = jQuery(this).attr('rel');
 
 				input.val(hex);
 
-				// If user wants to, change the input's BG to reflect the newly selected colour
+				// If user wants to, change the input's BG to reflect the newly selected color
 				if (config.inputBG) {
 					input.css({background: '#' + hex, color: '#' + hexInvert(hex)});
 				}
@@ -228,8 +227,8 @@ jQuery.fn.colourPicker = function (conf) {
 				// Trigger change-event on input
 				input.change();
 
-				// Hide the colour-picker and return false
-				colourPicker.hide(config.speed);
+				// Hide the color-picker and return false
+				colorpicker.hide(config.speed);
 
 				return false;
 			});
