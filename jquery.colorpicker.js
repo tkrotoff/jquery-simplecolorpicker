@@ -20,7 +20,6 @@
     var config = $.extend({
       id: 'jquery-colorpicker',  // id of color-picker container
       ico: 'ico.gif',        // SRC to color-picker icon
-      title: 'Pick a color',    // Default dialogue title
       changeInputBackground: true,          // Whether to change the input's background to the selected color's
       speed: 500          // Speed of dialogue-animation
     }, conf);
@@ -58,9 +57,9 @@
 
       // Build a list of colors based on the colors in the select
       $('option', select).each(function() {
-        var option  = $(this);
-        var hex    = option.val();
-        var title  = option.text();
+        var option = $(this);
+        var hex = option.val();
+        var title = option.text();
 
         loc += '<li><a href="#" title="'
             + title
@@ -90,10 +89,9 @@
       // When you click the icon
       icon.click(function() {
         // Show the color-picker next to the icon and fill it with the colors in the select that used to be there
-        var iconPos  = icon.offset();
-        var heading  = config.title ? '<h2>' + config.title + '</h2>' : '';
+        var iconPos = icon.offset();
 
-        colorpicker.html(heading + '<ul>' + loc + '</ul>').css({
+        colorpicker.html('<ul>' + loc + '</ul>').css({
           position: 'absolute',
           left: iconPos.left + 'px',
           top: iconPos.top + 'px'
