@@ -21,6 +21,7 @@
       id: 'colorpicker',  // id of color-picker container
       ico: 'ico.gif',        // SRC to color-picker icon
       changeInputBackground: true,          // Whether to change the input's background to the selected color's
+      colors: ["ffffff", "000000", "111FFF", "C0C0C0", "FFF000"],
       delay: 0          // Animation delay for the dialog
     }, conf);
 
@@ -50,10 +51,10 @@
     // For every select passed to the plug-in
     return this.each(function() {
       // Insert icon and input
-      var select = $(this);
-      var icon = $('<a href="#"><img src="' + config.ico + '" /></a>').insertAfter(select);
-      var input = $('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
-      var loc = '';
+      var div = $(this);
+      //var icon = $('<a href="#"><img src="' + config.ico + '" /></a>').insertAfter(select);
+      //var input = $('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
+      /*var loc = '';
 
       // Build a list of colors based on the colors in the select
       $('option', select).each(function() {
@@ -72,45 +73,53 @@
             + ';">'
             + title
             + '</a></li>';
+      });*/
+
+      var allColors = '';
+      $.each(config.colors, function(index, value) {
+        allColors += '<li><a href="#" title="' + value
+          + '" style="background: #' + value
+          + '; color: ' + hexInvert(value) + ';">'
+          + value + '</a></li>';
       });
 
       // Remove select
-      select.remove();
+      //select.remove();
 
       // Change the input's background to reflect the newly selected color
       if (config.changeInputBackground) {
-        input.change(function() {
-          input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
+        div.change(function() {
+          div.css({background: '#' + div.val(), color: '#' + hexInvert(div.val())});
         });
 
-        input.change();
+        div.change();
       }
 
       // When you click the icon
-      icon.click(function() {
+      div.click(function() {
         // Show the color-picker next to the icon and fill it with the colors in the select that used to be there
-        var iconPos = icon.offset();
+        var divPos = div.offset();
 
-        colorpicker.html('<ul>' + loc + '</ul>').css({
+        colorpicker.html('<ul>' + allColors + '</ul>').css({
           position: 'absolute',
-          left: iconPos.left + 'px',
-          top: iconPos.top + 'px'
+          left: divPos.left + 'px',
+          top: divPos.top + 'px'
         }).show(config.delay);
 
         // When you click a color in the color-picker
         $('a', colorpicker).click(function() {
           // The hex is stored in the link's rel-attribute
-          var hex = $(this).attr('rel');
+          var hex = $(this).attr('title');
 
-          input.val(hex);
+          div.val(hex);
 
           // If user wants to, change the input's background to reflect the newly selected color
           if (config.changeInputBackground) {
-            input.css({background: '#' + hex, color: '#' + hexInvert(hex)});
+            div.css({background: '#' + hex, color: '#' + hexInvert(hex)});
           }
 
           // Trigger change-event on input
-          input.change();
+          div.change();
 
           // Hide the color-picker and return false
           colorpicker.hide(config.delay);
