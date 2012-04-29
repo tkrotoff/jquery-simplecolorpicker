@@ -20,7 +20,7 @@ jQuery.fn.colorpicker = function(conf) {
     id: 'jquery-colorpicker',  // id of color-picker container
     ico: 'ico.gif',        // SRC to color-picker icon
     title: 'Pick a color',    // Default dialogue title
-    inputBG: true,          // Whether to change the input's background to the selected color's
+    changeInputBackground: true,          // Whether to change the input's background to the selected color's
     speed: 500,          // Speed of dialogue-animation
     openTxt: 'Open color picker'
   }, conf);
@@ -78,8 +78,8 @@ jQuery.fn.colorpicker = function(conf) {
     // Remove select
     select.remove();
 
-    // If user wants to, change the input's BG to reflect the newly selected color
-    if (config.inputBG) {
+    // Change the input's background to reflect the newly selected color
+    if (config.changeInputBackground) {
       input.change(function() {
         input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
       });
@@ -106,8 +106,8 @@ jQuery.fn.colorpicker = function(conf) {
 
         input.val(hex);
 
-        // If user wants to, change the input's BG to reflect the newly selected color
-        if (config.inputBG) {
+        // If user wants to, change the input's background to reflect the newly selected color
+        if (config.changeInputBackground) {
           input.css({background: '#' + hex, color: '#' + hexInvert(hex)});
         }
 
