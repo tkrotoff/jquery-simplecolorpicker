@@ -21,7 +21,7 @@
       id: 'colorpicker',  // id of color-picker container
       ico: 'ico.gif',        // SRC to color-picker icon
       changeInputBackground: true,          // Whether to change the input's background to the selected color's
-      speed: 500          // Speed of dialogue-animation
+      delay: 0          // Animation delay for the dialog
     }, conf);
 
     // Inverts a hex-color
@@ -42,7 +42,7 @@
       // Remove the color-picker if you click outside it
       $(document).click(function(event) {
         if (!($(event.target).is('#' + config.id) || $(event.target).parents('#' + config.id).length)) {
-          colorpicker.hide(config.speed);
+          colorpicker.hide(config.delay);
         }
       });
     }
@@ -95,7 +95,7 @@
           position: 'absolute',
           left: iconPos.left + 'px',
           top: iconPos.top + 'px'
-        }).show(config.speed);
+        }).show(config.delay);
 
         // When you click a color in the color-picker
         $('a', colorpicker).click(function() {
@@ -113,7 +113,7 @@
           input.change();
 
           // Hide the color-picker and return false
-          colorpicker.hide(config.speed);
+          colorpicker.hide(config.delay);
 
           return false;
         });
