@@ -1,62 +1,62 @@
 #jquery-colorpicker {
-	background: #fafafa;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+  background: #fafafa;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
 
-	width: 180px;
-	padding: 10px 5px 5px 10px;
+  width: 180px;
+  padding: 10px 5px 5px 10px;
 
-	border: 1px solid #666;
+  border: 1px solid #666;
 
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
 
-	-moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 
-	z-index: 99;
+  z-index: 99;
 }
 
-	#jquery-colorpicker h2 {
-		margin: 0 0 5px 0;
-		font-size: 14px;
-	}
+  #jquery-colorpicker h2 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+  }
 
-	#jquery-colorpicker ul {
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
+  #jquery-colorpicker ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 
-		+zoom: 1;
-	}
+    +zoom: 1;
+  }
 
-	#jquery-colorpicker ul:after {
-		content: ".";
-		display: block;
-		height: 0;
-		visibility: hidden;
-		clear: both;
-	}
+  #jquery-colorpicker ul:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+  }
 
-		#jquery-colorpicker ul li {
-			float: left;
-			margin: 0 5px 5px 0;
-		}
+    #jquery-colorpicker ul li {
+      float: left;
+      margin: 0 5px 5px 0;
+    }
 
-			#jquery-colorpicker ul li a {
-				display: block;
+      #jquery-colorpicker ul li a {
+        display: block;
 
-				width: 13px;
-				height: 13px;
+        width: 13px;
+        height: 13px;
 
-				text-decoration: none;
-				text-indent: -100000px;
-				outline: 0;
+        text-decoration: none;
+        text-indent: -100000px;
+        outline: 0;
 
-				border: 1px solid #aaa;
-			}
+        border: 1px solid #aaa;
+      }
 
-			#jquery-colorpicker ul li a:hover {
-				border-color: #000;
-			}
+      #jquery-colorpicker ul li a:hover {
+        border-color: #000;
+      }

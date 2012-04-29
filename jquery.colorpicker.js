@@ -1,239 +1,126 @@
-/***
-@title:
-Color Picker
+/**
+ * jQuery Color Picker.
+ *
+ * Copyright (C) 2008-2011 Andreas Lagerkvist
+ *
+ * http://andreaslagerkvist.com/jquery/colour-picker/
+ *
+ * License: http://creativecommons.org/licenses/by/3.0/
+ *
+ * Use this plug-in on a normal <select>-element filled with colors to turn it in to a color-picker widget
+ * that allows users to view all the colors in the drop-down as well as enter their own, preferred, custom color.
+ *
+ * Example of use: $('select[name="color"]').colorpicker();
+ *
+ * You can close the color-picker without selecting a color by clicking anywhere outside the color-picker box.
+ */
+jQuery.fn.colorpicker = function(conf) {
+  // Config for plugin
+  var config = jQuery.extend({
+    id: 'jquery-colorpicker',  // id of color-picker container
+    ico: 'ico.gif',        // SRC to color-picker icon
+    title: 'Pick a color',    // Default dialogue title
+    inputBG: true,          // Whether to change the input's background to the selected color's
+    speed: 500,          // Speed of dialogue-animation
+    openTxt: 'Open color picker'
+  }, conf);
 
-@version:
-2.0
+  // Inverts a hex-color
+  var hexInvert = function(hex) {
+    var r = hex.substr(0, 2);
+    var g = hex.substr(2, 2);
+    var b = hex.substr(4, 2);
 
-@author:
-Andreas Lagerkvist
+    return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
+  };
 
-@date:
-2008-09-16
+  // Add the color-picker dialogue if not added
+  var colorpicker = jQuery('#' + config.id);
 
-@url:
-http://andreaslagerkvist.com/jquery/colour-picker/
+  if (!colorpicker.length) {
+    colorpicker = jQuery('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
 
-@license:
-http://creativecommons.org/licenses/by/3.0/
+    // Remove the color-picker if you click outside it (on body)
+    jQuery(document.body).click(function(event) {
+      if (!(jQuery(event.target).is('#' + config.id) || jQuery(event.target).parents('#' + config.id).length)) {
+        colorpicker.hide(config.speed);
+      }
+    });
+  }
 
-@copyright:
-2008 Andreas Lagerkvist (andreaslagerkvist.com)
+  // For every select passed to the plug-in
+  return this.each(function() {
+    // Insert icon and input
+    var select = jQuery(this);
+    var icon = jQuery('<a href="#"><img src="' + config.ico + '" alt="' + config.openTxt + '" /></a>').insertAfter(select);
+    var input = jQuery('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
+    var loc = '';
 
-@requires:
-jquery, jquery.colorpicker.css
+    // Build a list of colors based on the colors in the select
+    jQuery('option', select).each(function() {
+      var option  = jQuery(this);
+      var hex    = option.val();
+      var title  = option.text();
 
-@does:
-Use this plug-in on a normal <select>-element filled with colors to turn it in to a color-picker widget that allows users to view all the colors in the drop-down as well as enter their own, preferred, custom color. Only about 1k compressed.
+      loc += '<li><a href="#" title="'
+          + title
+          + '" rel="'
+          + hex 
+          + '" style="background: #' 
+          + hex 
+          + '; color: '
+          + hexInvert(hex) 
+          + ';">' 
+          + title
+          + '</a></li>';
+    });
 
-@howto:
-jQuery('select[name="color"]').colorpicker({ico: 'my-icon.gif', title: 'Select a color from the list'}); Would replace the select with 'my-icon.gif' which, when clicked, would open a dialogue with the title 'Select a color from the list'.
+    // Remove select
+    select.remove();
 
-You can close the color-picker without selecting a color by clicking anywhere outside the color-picker box.
+    // If user wants to, change the input's BG to reflect the newly selected color
+    if (config.inputBG) {
+      input.change(function() {
+        input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
+      });
 
-Here's a handy PHP-function to generate a list of "web-safe" colors:
+      input.change();
+    }
 
-[code]
-function gwsc() {
-	$cs = array('00', '33', '66', '99', 'CC', 'FF');
+    // When you click the icon
+    icon.click(function() {
+      // Show the color-picker next to the icon and fill it with the colors in the select that used to be there
+      var iconPos  = icon.offset();
+      var heading  = config.title ? '<h2>' + config.title + '</h2>' : '';
 
-	for($i=0; $i<6; $i++) {
-		for($j=0; $j<6; $j++) {
-			for($k=0; $k<6; $k++) {
-				$c = $cs[$i] .$cs[$j] .$cs[$k];
-				echo "<option value=\"$c\">#$c</option>\n";
-			}
-		}
-	}
-}
-[/code]
+      colorpicker.html(heading + '<ul>' + loc + '</ul>').css({
+        position: 'absolute', 
+        left: iconPos.left + 'px', 
+        top: iconPos.top + 'px'
+      }).show(config.speed);
 
-Use it like this: <select name="color"><?php gwsc(); ?></select>.
+      // When you click a color in the color-picker
+      jQuery('a', colorpicker).click(function() {
+        // The hex is stored in the link's rel-attribute
+        var hex = jQuery(this).attr('rel');
 
-@exampleHTML:
-<p>
-	<label>
-		Pick a color<br />
-		<select name="color">
-			<option value="ffffff">#ffffff</option>
-			<option value="ffccc9">#ffccc9</option>
-			<option value="ffce93">#ffce93</option>
-			<option value="fffc9e">#fffc9e</option>
-			<option value="ffffc7">#ffffc7</option>
-			<option value="9aff99">#9aff99</option>
-			<option value="96fffb">#96fffb</option>
-			<option value="cdffff">#cdffff</option>
-			<option value="cbcefb">#cbcefb</option>
-			<option value="cfcfcf">#cfcfcf</option>
-			<option value="fd6864">#fd6864</option>
-			<option value="fe996b">#fe996b</option>
-			<option value="fffe65">#fffe65</option>
-			<option value="fcff2f">#fcff2f</option>
-			<option value="67fd9a">#67fd9a</option>
-			<option value="38fff8">#38fff8</option>
-			<option value="68fdff">#68fdff</option>
-			<option value="9698ed">#9698ed</option>
-			<option value="c0c0c0">#c0c0c0</option>
-			<option value="fe0000">#fe0000</option>
-			<option value="f8a102">#f8a102</option>
-			<option value="ffcc67">#ffcc67</option>
-			<option value="f8ff00">#f8ff00</option>
-			<option value="34ff34">#34ff34</option>
-			<option value="68cbd0">#68cbd0</option>
-			<option value="34cdf9">#34cdf9</option>
-			<option value="6665cd">#6665cd</option>
-			<option value="9b9b9b">#9b9b9b</option>
-			<option value="cb0000">#cb0000</option>
-			<option value="f56b00">#f56b00</option>
-			<option value="ffcb2f">#ffcb2f</option>
-			<option value="ffc702">#ffc702</option>
-			<option value="32cb00">#32cb00</option>
-			<option value="00d2cb">#00d2cb</option>
-			<option value="3166ff">#3166ff</option>
-			<option value="6434fc">#6434fc</option>
-			<option value="656565">#656565</option>
-			<option value="9a0000">#9a0000</option>
-			<option value="ce6301">#ce6301</option>
-			<option value="cd9934">#cd9934</option>
-			<option value="999903">#999903</option>
-			<option value="009901">#009901</option>
-			<option value="329a9d">#329a9d</option>
-			<option value="3531ff">#3531ff</option>
-			<option value="6200c9">#6200c9</option>
-			<option value="343434">#343434</option>
-			<option value="680100">#680100</option>
-			<option value="963400">#963400</option>
-			<option value="986536" selected="selected">#986536</option>
-			<option value="646809">#646809</option>
-			<option value="036400">#036400</option>
-			<option value="34696d">#34696d</option>
-			<option value="00009b">#00009b</option>
-			<option value="303498">#303498</option>
-			<option value="000000">#000000</option>
-			<option value="330001">#330001</option>
-			<option value="643403">#643403</option>
-			<option value="663234">#663234</option>
-			<option value="343300">#343300</option>
-			<option value="013300">#013300</option>
-			<option value="003532">#003532</option>
-			<option value="010066">#010066</option>
-			<option value="340096">#340096</option>
-		</select>
-	</label>
-</p>
+        input.val(hex);
 
-@exampleJS:
-jQuery('#jquery-colorpicker-example select').colorpicker({
-	title:	false
-});
-***/
-jQuery.fn.colorpicker = function (conf) {
-	// Config for plug
-	var config = jQuery.extend({
-		id:			'jquery-colorpicker',	// id of color-picker container
-		ico:		'ico.gif',				// SRC to color-picker icon
-		title:		'Pick a color',		// Default dialogue title
-		inputBG:	true,					// Whether to change the input's background to the selected color's
-		speed:		500,					// Speed of dialogue-animation
-		openTxt:	'Open color picker'
-	}, conf);
+        // If user wants to, change the input's BG to reflect the newly selected color
+        if (config.inputBG) {
+          input.css({background: '#' + hex, color: '#' + hexInvert(hex)});
+        }
 
-	// Inverts a hex-color
-	var hexInvert = function (hex) {
-		var r = hex.substr(0, 2);
-		var g = hex.substr(2, 2);
-		var b = hex.substr(4, 2);
+        // Trigger change-event on input
+        input.change();
 
-		return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
-	};
+        // Hide the color-picker and return false
+        colorpicker.hide(config.speed);
 
-	// Add the color-picker dialogue if not added
-	var colorpicker = jQuery('#' + config.id);
+        return false;
+      });
 
-	if (!colorpicker.length) {
-		colorpicker = jQuery('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
-
-		// Remove the color-picker if you click outside it (on body)
-		jQuery(document.body).click(function(event) {
-			if (!(jQuery(event.target).is('#' + config.id) || jQuery(event.target).parents('#' + config.id).length)) {
-				colorpicker.hide(config.speed);
-			}
-		});
-	}
-
-	// For every select passed to the plug-in
-	return this.each(function () {
-		// Insert icon and input
-		var select	= jQuery(this);
-		var icon	= jQuery('<a href="#"><img src="' + config.ico + '" alt="' + config.openTxt + '" /></a>').insertAfter(select);
-		var input	= jQuery('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
-		var loc		= '';
-
-		// Build a list of colors based on the colors in the select
-		jQuery('option', select).each(function () {
-			var option	= jQuery(this);
-			var hex		= option.val();
-			var title	= option.text();
-
-			loc += '<li><a href="#" title="' 
-					+ title 
-					+ '" rel="' 
-					+ hex 
-					+ '" style="background: #' 
-					+ hex 
-					+ '; color: '
-					+ hexInvert(hex) 
-					+ ';">' 
-					+ title 
-					+ '</a></li>';
-		});
-
-		// Remove select
-		select.remove();
-
-		// If user wants to, change the input's BG to reflect the newly selected color
-		if (config.inputBG) {
-			input.change(function () {
-				input.css({background: '#' + input.val(), color: '#' + hexInvert(input.val())});
-			});
-
-			input.change();
-		}
-
-		// When you click the icon
-		icon.click(function () {
-			// Show the color-picker next to the icon and fill it with the colors in the select that used to be there
-			var iconPos	= icon.offset();
-			var heading	= config.title ? '<h2>' + config.title + '</h2>' : '';
-
-			colorpicker.html(heading + '<ul>' + loc + '</ul>').css({
-				position: 'absolute', 
-				left: iconPos.left + 'px', 
-				top: iconPos.top + 'px'
-			}).show(config.speed);
-
-			// When you click a color in the color-picker
-			jQuery('a', colorpicker).click(function () {
-				// The hex is stored in the link's rel-attribute
-				var hex = jQuery(this).attr('rel');
-
-				input.val(hex);
-
-				// If user wants to, change the input's BG to reflect the newly selected color
-				if (config.inputBG) {
-					input.css({background: '#' + hex, color: '#' + hexInvert(hex)});
-				}
-
-				// Trigger change-event on input
-				input.change();
-
-				// Hide the color-picker and return false
-				colorpicker.hide(config.speed);
-
-				return false;
-			});
-
-			return false;
-		});
-	});
+      return false;
+    });
+  });
 };
