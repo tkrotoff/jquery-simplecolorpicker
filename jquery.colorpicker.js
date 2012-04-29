@@ -18,7 +18,7 @@
   $.fn.colorpicker = function(conf) {
     // Config for plugin
     var config = $.extend({
-      id: 'jquery-colorpicker',  // id of color-picker container
+      id: 'colorpicker',  // id of color-picker container
       ico: 'ico.gif',        // SRC to color-picker icon
       changeInputBackground: true,          // Whether to change the input's background to the selected color's
       speed: 500          // Speed of dialogue-animation
@@ -37,7 +37,7 @@
     var colorpicker = $('#' + config.id);
 
     if (!colorpicker.length) {
-      colorpicker = $('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
+      colorpicker = $('<div class="' + config.id + '"></div>').appendTo(document.body).hide();
 
       // Remove the color-picker if you click outside it
       $(document).click(function(event) {
