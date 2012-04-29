@@ -1,4 +1,4 @@
-.colorpicker:before {
+#colorpicker:before {
   position: absolute;
   top: -7px;
   left: 9px;
@@ -10,7 +10,7 @@
   content: '';
 }
 
-.colorpicker:after {
+#colorpicker:after {
   position: absolute;
   top: -6px;
   left: 10px;
@@ -21,7 +21,7 @@
   content: '';
 }
 
-.colorpicker {
+#colorpicker {
   top: 100%;
   left: 0;
   z-index: 1000;
@@ -54,18 +54,18 @@
           background-clip: padding-box;
 }
 
-  .colorpicker ul {
+  #colorpicker ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
   }
 
-    .colorpicker ul li {
+    #colorpicker ul li {
       float: left;
       margin: 0 0 0 0;
     }
 
-      .colorpicker ul li a {
+      #colorpicker ul li a {
         display: block;
 
         width: 13px;
@@ -76,6 +76,6 @@
         border: 1px solid #aaa;
       }
 
-      .colorpicker ul li a:hover {
+      #colorpicker ul li a:hover {
         border-color: #000;
       }

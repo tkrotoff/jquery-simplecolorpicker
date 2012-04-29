@@ -6,27 +6,17 @@
  * http://andreaslagerkvist.com/jquery/colour-picker/
  *
  * License: http://creativecommons.org/licenses/by/3.0/
- *
- * Use this plug-in on a normal <select>-element filled with colors to turn it in to a color-picker widget
- * that allows users to view all the colors in the drop-down as well as enter their own, preferred, custom color.
- *
- * Example of use: $('select[name="color"]').colorpicker();
- *
- * You can close the color-picker without selecting a color by clicking anywhere outside the color-picker box.
  */
 (function($) {
   $.fn.colorpicker = function(conf) {
     // Config for plugin
     var config = $.extend({
-      id: 'colorpicker',  // id of color-picker container
-      ico: 'ico.gif',        // SRC to color-picker icon
-      changeInputBackground: true,          // Whether to change the input's background to the selected color's
-      colors: ["ffffff", "000000", "111FFF", "C0C0C0", "FFF000"],
+      colors: ["ffffff", "000000", "111fff", "C0C0C0", "FFF000"],
       delay: 0          // Animation delay for the dialog
     }, conf);
 
     // Inverts a hex-color
-    var hexInvert = function(hex) {
+    var colorInvert = function(hex) {
       var r = hex.substr(0, 2);
       var g = hex.substr(2, 2);
       var b = hex.substr(4, 2);
@@ -34,95 +24,49 @@
       return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
     };
 
-    // Add the color-picker dialogue if not added
-    var colorpicker = $('#' + config.id);
-
-    if (!colorpicker.length) {
-      colorpicker = $('<div class="' + config.id + '"></div>').appendTo(document.body).hide();
-
-      // Remove the color-picker if you click outside it
-      $(document).click(function(event) {
-        if (!($(event.target).is('#' + config.id) || $(event.target).parents('#' + config.id).length)) {
-          colorpicker.hide(config.delay);
-        }
-      });
+    var dialog = $('#colorpicker');
+    if (!dialog.length) {
+      dialog = $('<div id="colorpicker"></div>').appendTo(document.body).hide();
     }
 
-    // For every select passed to the plug-in
+    // Remove the color-picker if you click outside it
+    $(document).click(function(event) {
+      if (!($(event.target).is('#colorpicker') || $(event.target).parents('#colorpicker').length)) {
+        dialog.hide(config.delay);
+      }
+    });
+
+    // For HTML element passed to the plugin
     return this.each(function() {
-      // Insert icon and input
-      var div = $(this);
-      //var icon = $('<a href="#"><img src="' + config.ico + '" /></a>').insertAfter(select);
-      //var input = $('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
-      /*var loc = '';
+      var element = $(this);
 
-      // Build a list of colors based on the colors in the select
-      $('option', select).each(function() {
-        var option = $(this);
-        var hex = option.val();
-        var title = option.text();
-
-        loc += '<li><a href="#" title="'
-            + title
-            + '" rel="'
-            + hex
-            + '" style="background: #'
-            + hex
-            + '; color: '
-            + hexInvert(hex)
-            + ';">'
-            + title
-            + '</a></li>';
-      });*/
-
-      var allColors = '';
-      $.each(config.colors, function(index, value) {
-        allColors += '<li><a href="#" title="' + value
-          + '" style="background: #' + value
-          + '; color: ' + hexInvert(value) + ';">'
-          + value + '</a></li>';
+      // Build the list of colors
+      // <li><a href="#" style="background: #111fff; color: inverted-color;">111fff</a></li>
+      var colorList = '';
+      $.each(config.colors, function(index, color) {
+        colorList += '<li><a href="#" style="background: #' + color + '; color: ' + colorInvert(color) + ';">' + color + '</a></li>';
       });
 
-      // Remove select
-      //select.remove();
-
-      // Change the input's background to reflect the newly selected color
-      if (config.changeInputBackground) {
-        div.change(function() {
-          div.css({background: '#' + div.val(), color: '#' + hexInvert(div.val())});
-        });
-
-        div.change();
-      }
-
-      // When you click the icon
-      div.click(function() {
-        // Show the color-picker next to the icon and fill it with the colors in the select that used to be there
-        var divPos = div.offset();
-
-        colorpicker.html('<ul>' + allColors + '</ul>').css({
+      // When you click on the HTML element
+      element.click(function() {
+        // Show the dialog next to the HTML element
+        var elementPos = element.offset();
+        dialog.html('<ul>' + colorList + '</ul>').css({
           position: 'absolute',
-          left: divPos.left + 'px',
-          top: divPos.top + 'px'
+          left: elementPos.left + 'px',
+          top: elementPos.top + 'px'
         }).show(config.delay);
 
-        // When you click a color in the color-picker
-        $('a', colorpicker).click(function() {
-          // The hex is stored in the link's rel-attribute
-          var hex = $(this).attr('title');
+        // When you click on a color inside the dialog
+        $('a', dialog).click(function() {
+          // The color hex is stored in the link's text
+          var color = $(this).text();
 
-          div.val(hex);
-
-          // If user wants to, change the input's background to reflect the newly selected color
-          if (config.changeInputBackground) {
-            div.css({background: '#' + hex, color: '#' + hexInvert(hex)});
-          }
-
-          // Trigger change-event on input
-          div.change();
+          // Change the input's background to reflect the newly selected color
+          element.css({background: '#' + color, color: '#' + colorInvert(color)});
 
           // Hide the color-picker and return false
-          colorpicker.hide(config.delay);
+          dialog.hide(config.delay);
 
           return false;
         });
