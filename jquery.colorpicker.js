@@ -21,8 +21,7 @@ jQuery.fn.colorpicker = function(conf) {
     ico: 'ico.gif',        // SRC to color-picker icon
     title: 'Pick a color',    // Default dialogue title
     changeInputBackground: true,          // Whether to change the input's background to the selected color's
-    speed: 500,          // Speed of dialogue-animation
-    openTxt: 'Open color picker'
+    speed: 500          // Speed of dialogue-animation
   }, conf);
 
   // Inverts a hex-color
@@ -52,7 +51,7 @@ jQuery.fn.colorpicker = function(conf) {
   return this.each(function() {
     // Insert icon and input
     var select = jQuery(this);
-    var icon = jQuery('<a href="#"><img src="' + config.ico + '" alt="' + config.openTxt + '" /></a>').insertAfter(select);
+    var icon = jQuery('<a href="#"><img src="' + config.ico + '" /></a>').insertAfter(select);
     var input = jQuery('<input type="text" name="' + select.attr('name') + '" value="' + select.val() + '" size="6" />').insertAfter(select);
     var loc = '';
 
