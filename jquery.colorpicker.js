@@ -39,8 +39,8 @@
     if (!colorpicker.length) {
       colorpicker = $('<div id="' + config.id + '"></div>').appendTo(document.body).hide();
 
-      // Remove the color-picker if you click outside it (on body)
-      $(document.body).click(function(event) {
+      // Remove the color-picker if you click outside it
+      $(document).click(function(event) {
         if (!($(event.target).is('#' + config.id) || $(event.target).parents('#' + config.id).length)) {
           colorpicker.hide(config.speed);
         }
