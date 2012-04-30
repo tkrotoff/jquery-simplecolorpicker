@@ -9,16 +9,16 @@
  * License: http://creativecommons.org/licenses/by/3.0/
  */
 
-(function ($) {
+(function($) {
 
   /**
    * Main color picker function.
    */
-  $.fn.colorpicker = function (options) {
+  $.fn.colorpicker = function(options) {
     options = $.extend({}, $.fn.colorpicker.defaults, options);
 
     // Inverts a hex-color
-    var colorInvert = function (colorHex) {
+    var colorInvert = function(colorHex) {
       var r = colorHex.substr(0, 2);
       var g = colorHex.substr(2, 2);
       var b = colorHex.substr(4, 2);
@@ -32,25 +32,25 @@
     }
 
     // Remove the color-picker if you click outside it
-    $(document).click(function (event) {
+    $(document).click(function(event) {
       if (!($(event.target).is('#colorpicker') || $(event.target).parents('#colorpicker').length)) {
         dialog.hide(options.delay);
       }
     });
 
     // For HTML element passed to the plugin
-    return this.each(function () {
+    return this.each(function() {
       var element = $(this);
 
       // Build the list of colors
       // <li><a href="#" style="background-color: #111fff;">111fff</a></li>
       var colorList = '';
-      $.each(options.colors, function (index, color) {
+      $.each(options.colors, function(index, color) {
         colorList += '<li><a href="#" style="background-color: #' + color + ';">' + color + '</a></li>';
       });
 
       // When you click on the HTML element
-      element.click(function () {
+      element.click(function() {
         // Show the dialog next to the HTML element
         var elementPos = element.offset();
         dialog.html('<ul>' + colorList + '</ul>').css({
@@ -60,7 +60,7 @@
         }).show(options.delay);
 
         // When you click on a color inside the dialog
-        $('a', dialog).click(function () {
+        $('a', dialog).click(function() {
           // The color is stored in the link's value
           var color = $(this).text();
 
