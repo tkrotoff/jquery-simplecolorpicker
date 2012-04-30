@@ -1,8 +1,8 @@
 # Very simple jQuery color picker
 
 Yet another jQuery color picker. The look integrates very well with Bootstrap Twitter.
-Design and color taken from Google Calendar.
-The source code requires only jQuery and is about 100 lines of JavaScript.
+Design and colors taken from Google Calendar.
+The source code only requires jQuery and is about 100 lines of JavaScript.
 
 ![Screenshot](https://raw.github.com/tkrotoff/jquery-colorpicker/master/screenshot.png)
 
@@ -28,7 +28,7 @@ and pass some options if needed:
 
 ### Events
 
-- changeColor: triggered when the color has been changed
+- changeColor: triggered when a color has been selected by the user
 
 ## Original source code
 
@@ -45,6 +45,7 @@ Then I rewrote the commits using `git rebase -i`.
 ## Copyright and license
 
 Copyright (C) 2008-2011 Andreas Lagerkvist
+
 Copyright (C) 2012 Tanguy Krotoff
 
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/), you are free:
