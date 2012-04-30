@@ -1,3 +1,9 @@
+/**
+ * CSS inspired by Bootstrap Twitter.
+ * See https://github.com/twitter/bootstrap/blob/master/less/dropdowns.less
+ * See http://twitter.github.com/bootstrap/assets/css/bootstrap.css
+ */
+
 #colorpicker:before {
   position: absolute;
   top: -7px;
@@ -22,18 +28,20 @@
 }
 
 #colorpicker {
+  position: absolute;
   top: 100%;
   left: 0;
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 10px;
-  padding: 4px 4px 0 0;
-  margin: 1px 0 0 0;
-  background-color: #ffffff;
 
-  max-width: 200px;
-  padding: 10px 5px 5px 10px;
+  min-width: 160px;
+  max-width: 209px;
+
+  padding: 4px 0px 0px 4px;
+  margin: 1px 0 0;
+  list-style: none;
+  background-color: #ffffff;
 
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -62,20 +70,21 @@
 
     #colorpicker ul li {
       float: left;
-      margin: 0 0 0 0;
+      margin: 0 4px 4px 0;
     }
 
       #colorpicker ul li a {
         display: block;
 
-        width: 13px;
-        height: 13px;
+        width: 15px;
+        height: 15px;
 
         text-indent: -100000px;
-
-        border: 1px solid #aaa;
       }
 
       #colorpicker ul li a:hover {
-        border-color: #000;
+        width: 13px;
+        height: 13px;
+
+        border: 1px solid black;
       }

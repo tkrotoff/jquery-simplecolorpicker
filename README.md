@@ -14,7 +14,10 @@ I have extracted the original source code from [svn](http://code.google.com/p/af
 
 Then I rewrote the commits using `git rebase -i`.
 
-## License
+## Copyright and license
+
+Copyright (C) 2008-2011 Andreas Lagerkvist
+Copyright (C) 2012 Tanguy Krotoff
 
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/), you are free:
 
@@ -23,5 +26,3 @@ Then I rewrote the commits using `git rebase -i`.
 - to make commercial use of the work
 
 You must attribute the work in the manner specified by the author.
-
-Copyright (C) 2008-2011 Andreas Lagerkvist
