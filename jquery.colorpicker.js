@@ -12,62 +12,10 @@
 (function ($) {
 
   /**
-   * Default color picker options.
-   */
-  $.fn.colorpicker.defaults = {
-    // Default colors for the picker
-    colors: [
-      // Colors from Google Calendar
-      '000000', // Black
-      '7BD148', // Green
-      '5484ED', // Bold blue
-      'A4BDFC', // Blue
-      '46D6DB', // Turquoise
-      '7AE7BF', // Green
-      '51B749', // Bold green
-      'FBD75B', // Yellow
-      'FFB878', // Orange
-      'FF887C', // Red
-      'DC2127', // Bold red
-      'DBADFF', // Purple
-      'E1E1E1', // Gray
-
-      // More colors from Google Calendar
-      'AC725E',
-      'D06B64',
-      'F83A22',
-      'FA573C',
-      'FF7537',
-      'FFAD46',
-      '42D692',
-      '16A765',
-      '7BD148',
-      'B3DC6C',
-      'FBE983',
-      'FAD165',
-      '92E1C0',
-      '9FE1E7',
-      '9FC6E7',
-      '4986E7',
-      '9A9CFF',
-      'B99AFF',
-      'C2C2C2',
-      'CABDBF',
-      'CCA6AC',
-      'F691B2',
-      'CD74E6',
-      'A47AE2'
-    ],
-
-    // Animation delay for the dialog
-    delay: 0
-  };
-
-  /**
    * Main color picker function.
    */
   $.fn.colorpicker = function (options) {
-    options = $.extend({}, $.fn.colorPicker.defaults, options);
+    options = $.extend({}, $.fn.colorpicker.defaults, options);
 
     // Inverts a hex-color
     var colorInvert = function (colorHex) {
@@ -132,4 +80,57 @@
       });
     });
   };
+
+  /**
+   * Default color picker options.
+   */
+  $.fn.colorpicker.defaults = {
+    // Default colors for the picker
+    colors: [
+      // Colors from Google Calendar
+      '000000', // Black
+      '7BD148', // Green
+      '5484ED', // Bold blue
+      'A4BDFC', // Blue
+      '46D6DB', // Turquoise
+      '7AE7BF', // Green
+      '51B749', // Bold green
+      'FBD75B', // Yellow
+      'FFB878', // Orange
+      'FF887C', // Red
+      'DC2127', // Bold red
+      'DBADFF', // Purple
+      'E1E1E1', // Gray
+
+      // More colors from Google Calendar
+      'AC725E',
+      'D06B64',
+      'F83A22',
+      'FA573C',
+      'FF7537',
+      'FFAD46',
+      '42D692',
+      '16A765',
+      '7BD148',
+      'B3DC6C',
+      'FBE983',
+      'FAD165',
+      '92E1C0',
+      '9FE1E7',
+      '9FC6E7',
+      '4986E7',
+      '9A9CFF',
+      'B99AFF',
+      'C2C2C2',
+      'CABDBF',
+      'CCA6AC',
+      'F691B2',
+      'CD74E6',
+      'A47AE2'
+    ],
+
+    // Animation delay for the dialog
+    delay: 0
+  };
+
 })(jQuery);
