@@ -24,6 +24,7 @@
 
 <script type="text/javascript">
 
+$(document).ready(function () {
   $('#colorpicker1').colorpicker({
     colors: ["FFFFFF", "000000", "111FFF", "C0C0C0", "FFF000"]
   });
@@ -32,7 +33,10 @@
 
   $('#colorpicker3').colorpicker({
     delay: 500
+  }).on('changeColor', function (event) {
+    $(document.body).css('background-color', event.color);
   });
+});
 
 </script>
 

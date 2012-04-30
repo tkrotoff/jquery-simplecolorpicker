@@ -70,6 +70,11 @@
             color: '#' + colorInvert(color)
           });
 
+          element.trigger({
+            type: 'changeColor',
+            color: '#' + color
+          });
+
           // Hide the color-picker and return false
           dialog.hide(options.delay);
 
