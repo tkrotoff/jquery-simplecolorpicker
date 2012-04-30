@@ -8,54 +8,66 @@
  *
  * License: http://creativecommons.org/licenses/by/3.0/
  */
-(function ($) {
-  $.fn.colorpicker = function (options) {
-    // Config for plugin
-    var config = $.extend({
-      // Colors from Google Calendar
-      colors: [
-        "000000", // Black
-        "7BD148", // Green
-        "5484ED", // Bold blue
-        "A4BDFC", // Blue
-        "46D6DB", // Turquoise
-        "7AE7BF", // Green
-        "51B749", // Bold green
-        "FBD75B", // Yellow
-        "FFB878", // Orange
-        "FF887C", // Red
-        "DC2127", // Bold red
-        "DBADFF", // Purple
-        "E1E1E1", // Gray
 
-        // Other colors from Google Calendar
-        "AC725E",
-        "D06B64",
-        "F83A22",
-        "FA573C",
-        "FF7537",
-        "FFAD46",
-        "42D692",
-        "16A765",
-        "7BD148",
-        "B3DC6C",
-        "FBE983",
-        "FAD165",
-        "92E1C0",
-        "9FE1E7",
-        "9FC6E7",
-        "4986E7",
-        "9A9CFF",
-        "B99AFF",
-        "C2C2C2",
-        "CABDBF",
-        "CCA6AC",
-        "F691B2",
-        "CD74E6",
-        "A47AE2"
-      ],
-      delay: 0 // Animation delay for the dialog
-    }, options);
+(function ($) {
+
+  /**
+   * Default color picker options.
+   */
+  $.fn.colorpicker.defaults = {
+    // Default colors for the picker
+    colors: [
+      // Colors from Google Calendar
+      '000000', // Black
+      '7BD148', // Green
+      '5484ED', // Bold blue
+      'A4BDFC', // Blue
+      '46D6DB', // Turquoise
+      '7AE7BF', // Green
+      '51B749', // Bold green
+      'FBD75B', // Yellow
+      'FFB878', // Orange
+      'FF887C', // Red
+      'DC2127', // Bold red
+      'DBADFF', // Purple
+      'E1E1E1', // Gray
+
+      // More colors from Google Calendar
+      'AC725E',
+      'D06B64',
+      'F83A22',
+      'FA573C',
+      'FF7537',
+      'FFAD46',
+      '42D692',
+      '16A765',
+      '7BD148',
+      'B3DC6C',
+      'FBE983',
+      'FAD165',
+      '92E1C0',
+      '9FE1E7',
+      '9FC6E7',
+      '4986E7',
+      '9A9CFF',
+      'B99AFF',
+      'C2C2C2',
+      'CABDBF',
+      'CCA6AC',
+      'F691B2',
+      'CD74E6',
+      'A47AE2'
+    ],
+
+    // Animation delay for the dialog
+    delay: 0
+  };
+
+  /**
+   * Main color picker function.
+   */
+  $.fn.colorpicker = function (options) {
+    options = $.extend({}, $.fn.colorPicker.defaults, options);
 
     // Inverts a hex-color
     var colorInvert = function (colorHex) {
@@ -74,7 +86,7 @@
     // Remove the color-picker if you click outside it
     $(document).click(function (event) {
       if (!($(event.target).is('#colorpicker') || $(event.target).parents('#colorpicker').length)) {
-        dialog.hide(config.delay);
+        dialog.hide(options.delay);
       }
     });
 
@@ -85,7 +97,7 @@
       // Build the list of colors
       // <li><a href="#" style="background-color: #111fff;">111fff</a></li>
       var colorList = '';
-      $.each(config.colors, function (index, color) {
+      $.each(options.colors, function (index, color) {
         colorList += '<li><a href="#" style="background-color: #' + color + ';">' + color + '</a></li>';
       });
 
@@ -97,7 +109,7 @@
           position: 'absolute',
           left: elementPos.left,
           top: elementPos.top + element.outerHeight()
-        }).show(config.delay);
+        }).show(options.delay);
 
         // When you click on a color inside the dialog
         $('a', dialog).click(function () {
@@ -111,7 +123,7 @@
           });
 
           // Hide the color-picker and return false
-          dialog.hide(config.delay);
+          dialog.hide(options.delay);
 
           return false;
         });
