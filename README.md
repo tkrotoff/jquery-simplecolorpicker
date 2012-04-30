@@ -1,6 +1,34 @@
 # Very simple jQuery color picker
 
-Yet another jQuery color picker.
+Yet another jQuery color picker. The look integrates very well with Bootstrap Twitter.
+Design and color taken from Google Calendar.
+The source code requires only jQuery and is about 100 lines of JavaScript.
+
+![Screenshot](https://raw.github.com/tkrotoff/jquery-colorpicker/master/screenshot.png)
+
+## How to use
+
+Call the color picker via JavaScript:
+
+    $('#mycolorpicker').colorpicker();
+
+and pass some options if needed:
+
+    $('#mycolorpicker').colorpicker({
+      colors: ["FFFFFF", "000000", "111FFF", "C0C0C0", "FFF000"],
+      delay: 500
+    }).on('changeColor', function (event) {
+      $(document.body).css('background-color', event.color);
+    });
+
+### Options
+
+- colors: an array of colors to initialize the picker with
+- delay: show and hide animation delay
+
+### Events
+
+- changeColor: triggered when the color has been changed
 
 ## Original source code
 
