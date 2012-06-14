@@ -9,7 +9,7 @@
  * License: http://creativecommons.org/licenses/by/3.0/
  */
 
-(function($) {
+!function($) {
 
   /**
    * Constructor.
@@ -154,4 +154,4 @@
     delay: 0
   };
 
-})(jQuery);
+}(window.jQuery);

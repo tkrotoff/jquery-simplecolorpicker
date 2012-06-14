@@ -7,29 +7,28 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="jquery.colorpicker.js"></script>
 
-  <!--
   <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"/>
   <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css"/>
-  -->
 
   <link rel="stylesheet" type="text/css" href="jquery.colorpicker.css"/>
 </head>
 
 <body>
 
-<div id="colorpicker1">Click me!</div>
-<div id="colorpicker2">Click me!</div>
+<div id="colorpicker1">Click me! 1</div>
 
-<input id="colorpicker3" type="text">
+<div id="colorpicker2">Click me! 2</div>
+
+<input id="colorpicker3" type="text">3</input>
 
 <script type="text/javascript">
 
 $(document).ready(function () {
-  $('#colorpicker1').colorpicker({
+  $('#colorpicker1').colorpicker();
+
+  $('#colorpicker2').colorpicker({
     colors: ["FFFFFF", "000000", "111FFF", "C0C0C0", "FFF000"]
   });
-
-  $('#colorpicker2').colorpicker();
 
   $('#colorpicker3').colorpicker({
     delay: 500
