@@ -12,88 +12,104 @@
 (function($) {
 
   /**
-   * Main color picker function.
+   * Constructor.
    */
-  $.fn.colorpicker = function(options) {
-    options = $.extend({}, $.fn.colorpicker.defaults, options);
+  var Colorpicker = function(element, options) {
+    this.$element = $(element);
+    this.options = $.extend({}, $.fn.colorpicker.defaults, options);
+    this.picker = $('<div class="colorpicker"></div>').appendTo(document.body);
 
-    // Inverts a hex-color
-    var colorInvert = function(colorHex) {
+    // Build the list of colors
+    // <li><a href="#" style="background-color: #111fff;">111fff</a></li>
+    colorList = '';
+    $.each(this.options.colors, function(index, color) {
+      colorList += '<li><a href="#" style="background-color: #' + color + ';">' + color + '</a></li>';
+    });
+
+    // Attach the list of colors
+    this.picker.html('<ul>' + colorList + '</ul>');
+
+    // Click event
+    this.$element.on('click', $.proxy(this.click, this));
+
+    // Hide picker when clicking outside
+    $(document).on('mousedown', $.proxy(this.hide, this));
+  }
+
+  /**
+   * Colorpicker class.
+   */
+  Colorpicker.prototype = {
+    constructor: Colorpicker,
+
+    show: function() {
+      // Show the picker next to the HTML element
+      var elementPos = this.$element.offset();
+      this.picker.css({
+        position: 'absolute',
+        left: elementPos.left,
+        top: elementPos.top + this.$element.outerHeight()
+      });
+
+      this.picker.show(this.options.delay);
+    },
+
+    hide: function(e) {
+      this.picker.hide();
+    },
+
+    click: function(e) {
+      // When you click on a color inside the picker
+      $('a', this.picker).click(function() {
+        // The color is stored in the link's value
+        var color = $(this).text();
+
+        this.$element.trigger({
+          type: 'changeColor',
+          color: '#' + color
+        });
+      });
+
+      this.show();
+    },
+
+    /**
+     * Inverts a hex-color
+     */
+    colorInvert: function(colorHex) {
       var r = colorHex.substr(0, 2);
       var g = colorHex.substr(2, 2);
       var b = colorHex.substr(4, 2);
 
       return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
-    };
-
-    var dialog = $('#colorpicker');
-    if (!dialog.length) {
-      dialog = $('<div id="colorpicker"></div>').appendTo(document.body).hide();
     }
+  }
 
-    // Remove the color-picker if you click outside it
-    $(document).click(function(event) {
-      if (!($(event.target).is('#colorpicker') || $(event.target).parents('#colorpicker').length)) {
-        dialog.hide(options.delay);
-      }
-    });
-
+  /**
+   * Plugin definition.
+   */
+  $.fn.colorpicker = function(option) {
     // For HTML element passed to the plugin
-    return this.each(function() {
-      var element = $(this);
-
-      // Build the list of colors
-      // <li><a href="#" style="background-color: #111fff;">111fff</a></li>
-      var colorList = '';
-      $.each(options.colors, function(index, color) {
-        colorList += '<li><a href="#" style="background-color: #' + color + ';">' + color + '</a></li>';
-      });
-
-      // When you click on the HTML element
-      element.click(function() {
-        // Show the dialog next to the HTML element
-        var elementPos = element.offset();
-        dialog.html('<ul>' + colorList + '</ul>').css({
-          position: 'absolute',
-          left: elementPos.left,
-          top: elementPos.top + element.outerHeight()
-        }).show(options.delay);
-
-        // When you click on a color inside the dialog
-        $('a', dialog).click(function() {
-          // The color is stored in the link's value
-          var color = $(this).text();
-
-          // Change the input's background color to reflect the newly selected color
-          element.css({
-            'background-color': '#' + color,
-            color: '#' + colorInvert(color)
-          });
-
-          element.trigger({
-            type: 'changeColor',
-            color: '#' + color
-          });
-
-          // Hide the color-picker and return false
-          dialog.hide(options.delay);
-
-          return false;
-        });
-
-        return false;
-      });
+    return this.each(function () {
+      var $this = $(this),
+      data = $this.data('colorpicker'),
+      options = typeof option == 'object' && option;
+      if (!data) {
+        $this.data('colorpicker', (data = new Colorpicker(this, options)));
+      }
+      if (typeof option == 'string') data[option]();
     });
-  };
+  }
+
+  $.fn.colorpicker.Constructor = Colorpicker;
 
   /**
    * Default color picker options.
    */
   $.fn.colorpicker.defaults = {
-    // Default colors for the picker
+    // Default colors
     colors: [
       // Colors from Google Calendar
-      '000000', // Black
       '7BD148', // Green
       '5484ED', // Bold blue
       'A4BDFC', // Blue
@@ -134,7 +150,7 @@
       'A47AE2'
     ],
 
-    // Animation delay for the dialog
+    // Animation delay
     delay: 0
   };
 

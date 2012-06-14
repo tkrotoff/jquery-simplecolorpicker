@@ -4,7 +4,7 @@
  * See http://twitter.github.com/bootstrap/assets/css/bootstrap.css
  */
 
-#colorpicker:before {
+.colorpicker:before {
   position: absolute;
   top: -7px;
   left: 9px;
@@ -16,7 +16,7 @@
   content: '';
 }
 
-#colorpicker:after {
+.colorpicker:after {
   position: absolute;
   top: -6px;
   left: 10px;
@@ -27,7 +27,7 @@
   content: '';
 }
 
-#colorpicker {
+.colorpicker {
   position: absolute;
   top: 100%;
   left: 0;
@@ -62,18 +62,18 @@
           background-clip: padding-box;
 }
 
-  #colorpicker ul {
+  .colorpicker ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
   }
 
-    #colorpicker ul li {
+    .colorpicker ul li {
       float: left;
       margin: 0 4px 4px 0;
     }
 
-      #colorpicker ul li a {
+      .colorpicker ul li a {
         display: block;
 
         width: 15px;
@@ -82,7 +82,7 @@
         text-indent: -100000px;
       }
 
-      #colorpicker ul li a:hover {
+      .colorpicker ul li a:hover {
         width: 13px;
         height: 13px;
 
