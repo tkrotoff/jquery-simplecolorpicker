@@ -15,25 +15,36 @@
    * Constructor.
    */
   var Colorpicker = function(element, options) {
-    this.$element = $(element);
+    this.select = $(element);
     this.options = $.extend({}, $.fn.colorpicker.defaults, options);
+
+    // Hide select
+    //this.select.hide();
+
+    // Create the picker
     this.picker = $('<div class="colorpicker"></div>').appendTo(document.body);
+    this.input = $('<input type="text" name="' + this.select.attr('name') + '" value="' + this.select.val() + '"/>').insertAfter(this.select);
 
     // Build the list of colors
-    // <li><a href="#" style="background-color: #111fff;">111fff</a></li>
-    colorList = '';
-    $.each(this.options.colors, function(index, color) {
-      colorList += '<li><a href="#" style="background-color: #' + color + ';">' + color + '</a></li>';
+    // <li><a href="#" title="Green" style="background-color: #7bd148;">#7bd148</a></li>
+    var colorList = '';
+    $('option', this.select).each(function() {
+      var option = $(this);
+      var color = option.val();
+      var title = option.text();
+      colorList += '<li><a href="#" title="' + title + '" style="background-color: ' + color + ';">' + color + '</a></li>';
     });
 
     // Attach the list of colors
     this.picker.html('<ul>' + colorList + '</ul>');
 
     // Click event
-    this.$element.on('click', $.proxy(this.click, this));
+    this.picker.on('click', $.proxy(this.click, this));
+    this.input.on('click', $.proxy(this.show, this));
 
     // Hide picker when clicking outside
     $(document).on('mousedown', $.proxy(this.hide, this));
+    this.picker.on('mousedown', $.proxy(this.mousedown, this));
   }
 
   /**
@@ -44,33 +55,44 @@
 
     show: function() {
       // Show the picker next to the HTML element
-      var elementPos = this.$element.offset();
+      var elementPos = this.input.offset();
       this.picker.css({
         position: 'absolute',
         left: elementPos.left,
-        top: elementPos.top + this.$element.outerHeight()
+        top: elementPos.top + this.input.outerHeight()
       });
 
       this.picker.show(this.options.delay);
     },
 
-    hide: function(e) {
+    hide: function() {
       this.picker.hide();
     },
 
     click: function(e) {
-      // When you click on a color inside the picker
-      $('a', this.picker).click(function() {
-        // The color is stored in the link's value
-        var color = $(this).text();
+      var target = $(e.target).closest('a');
+      if (target.length == 1) {
+        switch (target[0].nodeName.toLowerCase()) {
 
-        this.$element.trigger({
-          type: 'changeColor',
-          color: '#' + color
-        });
-      });
+          // When you click on a color inside the picker
+          case 'a':
+              // The color is stored inside the link
+              var color = target.text();
 
-      this.show();
+              // Change select value
+              this.select.val(color).change();
+
+              // Hide the picker
+              this.hide();
+
+              break;
+        }
+      }
+    },
+
+    mousedown: function(e) {
+      e.stopPropagation();
+      e.preventDefault();
     },
 
     /**
@@ -104,52 +126,9 @@
   $.fn.colorpicker.Constructor = Colorpicker;
 
   /**
-   * Default color picker options.
+   * Default options.
    */
   $.fn.colorpicker.defaults = {
-    // Default colors
-    colors: [
-      // Colors from Google Calendar
-      '7BD148', // Green
-      '5484ED', // Bold blue
-      'A4BDFC', // Blue
-      '46D6DB', // Turquoise
-      '7AE7BF', // Green
-      '51B749', // Bold green
-      'FBD75B', // Yellow
-      'FFB878', // Orange
-      'FF887C', // Red
-      'DC2127', // Bold red
-      'DBADFF', // Purple
-      'E1E1E1', // Gray
-
-      // More colors from Google Calendar
-      'AC725E',
-      'D06B64',
-      'F83A22',
-      'FA573C',
-      'FF7537',
-      'FFAD46',
-      '42D692',
-      '16A765',
-      '7BD148',
-      'B3DC6C',
-      'FBE983',
-      'FAD165',
-      '92E1C0',
-      '9FE1E7',
-      '9FC6E7',
-      '4986E7',
-      '9A9CFF',
-      'B99AFF',
-      'C2C2C2',
-      'CABDBF',
-      'CCA6AC',
-      'F691B2',
-      'CD74E6',
-      'A47AE2'
-    ],
-
     // Animation delay
     delay: 0
   };

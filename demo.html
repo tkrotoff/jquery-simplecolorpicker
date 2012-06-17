@@ -4,36 +4,74 @@
   <meta charset='utf-8'>
   <title>Color picker for jQuery</title>
   <meta name="description" content="A very simple jQuery color picker plugin."/>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
   <script type="text/javascript" src="jquery.colorpicker.js"></script>
 
   <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"/>
   <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css"/>
-
   <link rel="stylesheet" type="text/css" href="jquery.colorpicker.css"/>
 </head>
 
 <body>
 
-<div id="colorpicker1">Click me! 1</div>
+<label>
+  Pick a color<br />
+  <select name="color1">
+    <!-- Colors from Google Calendar -->
+    <option value="#7bd148">Green</option>
+    <option value="#5484ed">Bold blue</option>
+    <option value="#a4bdfc">Blue</option>
+    <option value="#46d6db">Turquoise</option>
+    <option value="#7ae7bf">Light green</option>
+    <option value="#51b749">Bold green</option>
+    <option value="#fbd75b">Yellow</option>
+    <option value="#ffb878">Orange</option>
+    <option value="#ff887c">Red</option>
+    <option value="#dc2127">Bold red</option>
+    <option value="#dbadff">Purple</option>
+    <option value="#e1e1e1">Gray</option>
+  </select>
+</label>
 
-<div id="colorpicker2">Click me! 2</div>
-
-<input id="colorpicker3" type="text">3</input>
+<label>
+  Change background color<br />
+  <select name="color2">
+    <!-- More colors from Google Calendar -->
+    <option value="#ac725e">#ac725e</option>
+    <option value="#d06b64">#d06b64</option>
+    <option value="#f83a22">#f83a22</option>
+    <option value="#fa573c">#fa573c</option>
+    <option value="#ff7537">#ff7537</option>
+    <option value="#ffad46">#ffad46</option>
+    <option value="#42d692">#42d692</option>
+    <option value="#16a765">#16a765</option>
+    <option value="#7bd148">#7bd148</option>
+    <option value="#b3dc6c">#b3dc6c</option>
+    <option value="#fbe983">#fbe983</option>
+    <option value="#fad165">#fad165</option>
+    <option value="#92e1c0">#92e1c0</option>
+    <option value="#9fe1e7">#9fe1e7</option>
+    <option value="#9fc6e7">#9fc6e7</option>
+    <option value="#4986e7">#4986e7</option>
+    <option value="#9a9cff">#9a9cff</option>
+    <option value="#b99aff">#b99aff</option>
+    <option value="#c2c2c2">#c2c2c2</option>
+    <option value="#cabdbf">#cabdbf</option>
+    <option value="#cca6ac">#cca6ac</option>
+    <option value="#f691b2">#f691b2</option>
+    <option value="#cd74e6">#cd74e6</option>
+    <option value="#a47ae2">#a47ae2</option>
+  </select>
+</label>
 
 <script type="text/javascript">
 
 $(document).ready(function () {
-  $('#colorpicker1').colorpicker();
+  $('select[name="color1"]').colorpicker();
 
-  $('#colorpicker2').colorpicker({
-    colors: ["FFFFFF", "000000", "111FFF", "C0C0C0", "FFF000"]
-  });
-
-  $('#colorpicker3').colorpicker({
-    delay: 500
-  }).on('changeColor', function (event) {
-    $(document.body).css('background-color', event.color);
+  $('select[name="color2"]').colorpicker().change(function() {
+    $(document.body).css('background-color', $('select[name="color2"]').val());
   });
 });
 
