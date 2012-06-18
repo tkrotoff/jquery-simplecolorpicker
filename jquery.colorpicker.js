@@ -18,33 +18,36 @@
     this.select = $(element);
     this.options = $.extend({}, $.fn.colorpicker.defaults, options);
 
-    // Hide select
-    //this.select.hide();
-
-    // Create the picker
-    this.picker = $('<div class="colorpicker"></div>').appendTo(document.body);
-    this.input = $('<input type="text" name="' + this.select.attr('name') + '" value="' + this.select.val() + '"/>').insertAfter(this.select);
+    this.select.hide();
 
     // Build the list of colors
     // <li><a href="#" title="Green" style="background-color: #7bd148;">#7bd148</a></li>
     var colorList = '';
+    colorList += '<ul>';
     $('option', this.select).each(function() {
       var option = $(this);
       var color = option.val();
       var title = option.text();
       colorList += '<li><a href="#" title="' + title + '" style="background-color: ' + color + ';">' + color + '</a></li>';
     });
+    colorList += '</ul>';
 
-    // Attach the list of colors
-    this.picker.html('<ul>' + colorList + '</ul>');
+    if (this.options.picker) {
+      this.icon = $('<span class="colorpicker-icon" title="' + this.select.find('option:selected').text() + '" style="background-color: ' + this.select.val() + ';"></span>').insertAfter(this.select);
+      this.icon.on('click', $.proxy(this.show, this));
 
-    // Click event
-    this.picker.on('click', $.proxy(this.click, this));
-    this.input.on('click', $.proxy(this.show, this));
+      this.picker = $('<div class="colorpicker picker"></div>').appendTo(document.body);
+      this.picker.html(colorList);
+      this.picker.on('click', $.proxy(this.click, this));
+      this.picker.on('mousedown', $.proxy(this.mousedown, this));
 
-    // Hide picker when clicking outside
-    $(document).on('mousedown', $.proxy(this.hide, this));
-    this.picker.on('mousedown', $.proxy(this.mousedown, this));
+      // Hide picker when clicking outside
+      $(document).on('mousedown', $.proxy(this.hide, this));
+    } else {
+      this.inline = $('<span class="colorpicker"></span>').insertAfter(this.select);
+      this.inline.html(colorList);
+      this.inline.on('click', $.proxy(this.click, this));
+    }
   }
 
   /**
@@ -54,19 +57,17 @@
     constructor: Colorpicker,
 
     show: function() {
-      // Show the picker next to the HTML element
-      var elementPos = this.input.offset();
+      var pos = this.icon.offset();
       this.picker.css({
-        position: 'absolute',
-        left: elementPos.left,
-        top: elementPos.top + this.input.outerHeight()
+        left: pos.left - this.icon.outerWidth() / 2,
+        top: pos.top + this.icon.outerHeight()
       });
 
       this.picker.show(this.options.delay);
     },
 
     hide: function() {
-      this.picker.hide();
+      this.picker.hide(this.options.delay);
     },
 
     click: function(e) {
@@ -76,16 +77,31 @@
 
           // When you click on a color inside the picker
           case 'a':
-              // The color is stored inside the link
-              var color = target.text();
+            // The color is stored inside the link
+            var color = target.text();
 
-              // Change select value
-              this.select.val(color).change();
+            // The title ("Green", "Blue"...)
+            var title = target.attr('title');
+
+            // Mark this link as the active one
+            target.parent().siblings().find('a').removeClass('active');
+            target.addClass('active');
+
+            if (this.options.picker) {
+              // Change icon color
+              this.icon.css('background-color', color);
+
+              // Icon tooltip
+              this.icon.attr('title', title);
 
               // Hide the picker
               this.hide();
+            }
 
-              break;
+            // Change select value
+            this.select.val(color).change();
+
+            break;
         }
       }
     },
@@ -130,7 +146,9 @@
    */
   $.fn.colorpicker.defaults = {
     // Animation delay
-    delay: 0
+    delay: 0,
+
+    picker: false
   };
 
 }(window.jQuery);

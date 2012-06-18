@@ -27,7 +27,7 @@
   content: '';
 }
 
-.colorpicker {
+.colorpicker.picker {
   position: absolute;
   top: 100%;
   left: 0;
@@ -82,9 +82,20 @@
         text-indent: -100000px;
       }
 
-      .colorpicker ul li a:hover {
+      .colorpicker ul li a:hover,
+      .colorpicker ul li a.active {
         width: 13px;
         height: 13px;
 
         border: 1px solid black;
       }
+
+.colorpicker-icon {
+  display: inline-block;
+  cursor: pointer;
+
+  width: 15px;
+  height: 15px;
+
+  border: 1px solid black;
+}

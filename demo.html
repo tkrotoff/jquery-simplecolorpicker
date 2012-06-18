@@ -15,8 +15,78 @@
 
 <body>
 
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Legend text</legend>
+    <div class="control-group">
+      <label class="control-label" for="input01">Text input</label>
+      <div class="controls">
+        <input type="text" class="input-xlarge" id="input01">
+        <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="optionsCheckbox">Checkbox</label>
+      <div class="controls">
+        <label class="checkbox">
+          <input type="checkbox" id="optionsCheckbox" value="option1">
+          Option one is this and that—be sure to include why it's great
+        </label>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="select01">Select list</label>
+      <div class="controls">
+        <select id="select01">
+          <!-- Colors from Google Calendar -->
+          <option value="#7bd148">Green</option>
+          <option value="#5484ed">Bold blue</option>
+          <option value="#a4bdfc">Blue</option>
+          <option value="#46d6db">Turquoise</option>
+          <option value="#7ae7bf">Light green</option>
+          <option value="#51b749">Bold green</option>
+          <option value="#fbd75b">Yellow</option>
+          <option value="#ffb878">Orange</option>
+          <option value="#ff887c">Red</option>
+          <option value="#dc2127">Bold red</option>
+          <option value="#dbadff">Purple</option>
+          <option value="#e1e1e1">Gray</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="multiSelect">Multicon-select</label>
+      <div class="controls">
+        <select multiple="multiple" id="multiSelect">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="fileInput">File input</label>
+      <div class="controls">
+        <input class="input-file" id="fileInput" type="file">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="textarea">Textarea</label>
+      <div class="controls">
+        <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save changes</button>
+      <button class="btn">Cancel</button>
+    </div>
+  </fieldset>
+</form>
+
 <label>
-  Pick a color<br />
+  Pick a color
   <select name="color1">
     <!-- Colors from Google Calendar -->
     <option value="#7bd148">Green</option>
@@ -32,10 +102,11 @@
     <option value="#dbadff">Purple</option>
     <option value="#e1e1e1">Gray</option>
   </select>
+  Blabklab
 </label>
 
 <label>
-  Change background color<br />
+  Change background color
   <select name="color2">
     <!-- More colors from Google Calendar -->
     <option value="#ac725e">#ac725e</option>
@@ -68,7 +139,11 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-  $('select[name="color1"]').colorpicker();
+  $('#select01').colorpicker();
+
+  $('select[name="color1"]').colorpicker({
+    picker: true
+  });
 
   $('select[name="color2"]').colorpicker().change(function() {
     $(document.body).css('background-color', $('select[name="color2"]').val());
