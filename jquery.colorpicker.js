@@ -20,6 +20,10 @@
 
     this.select.hide();
 
+    // Trick: fix span alignment
+    // When a span does not contain any text, its alignment is not correct
+    var fakeText = '&nbsp;&nbsp;&nbsp;&nbsp;';
+
     // Build the list of colors
     // <div title="Green" style="background-color: #7bd148;"></div>
     var colorList = '';
@@ -27,11 +31,15 @@
       var option = $(this);
       var color = option.val();
       var title = option.text();
-      colorList += '<div title="' + title + '" style="background-color: ' + color + ';"></div>';
+      colorList += '<div title="' + title + '" style="background-color: ' + color + ';">' + fakeText + '</div>';
     });
 
     if (this.options.picker) {
-      this.icon = $('<span class="colorpicker-icon" title="' + this.select.find('option:selected').text() + '" style="background-color: ' + this.select.val() + ';"></span>').insertAfter(this.select);
+      var selectText = this.select.find('option:selected').text();
+      var selectValue = this.select.val();
+      this.icon = $('<span class="colorpicker-icon" title="' + selectText + '" style="background-color: ' + selectValue + ';">'
+                    + fakeText +
+                    '</span>').insertAfter(this.select);
       this.icon.on('click', $.proxy(this.show, this));
 
       this.picker = $('<span class="colorpicker picker"></span>').appendTo(document.body);
@@ -42,7 +50,7 @@
       $(document).on('mousedown', $.proxy(this.hide, this));
       this.picker.on('mousedown', $.proxy(this.mousedown, this));
     } else {
-      this.inline = $('<span class="colorpicker"></span>').insertAfter(this.select);
+      this.inline = $('<span class="colorpicker root"></span>').insertAfter(this.select);
       this.inline.html(colorList);
       this.inline.on('click', $.proxy(this.click, this));
     }
@@ -57,7 +65,7 @@
     show: function() {
       var pos = this.icon.offset();
       this.picker.css({
-        left: pos.left - this.icon.outerWidth() / 2,
+        left: pos.left - this.icon.outerWidth() / 2,  // TODO
         top: pos.top + this.icon.outerHeight()
       });
 

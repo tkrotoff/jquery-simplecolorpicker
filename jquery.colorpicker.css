@@ -36,9 +36,9 @@
   float: left;
 
   min-width: 160px;
-  max-width: 228px;
+  max-width: 280px;
 
-  padding: 4px 0px 0px 4px;
+  padding: 4px 0 0 4px;
   margin: 1px 0 0;
   list-style: none;
   background-color: #ffffff;
@@ -62,31 +62,23 @@
           background-clip: padding-box;
 }
 
+  .colorpicker.root {
+    display: inline-block;
+    height: 18px;
+    padding: 4px 0;
+  }
+
+  .colorpicker-icon,
   .colorpicker div {
     cursor: pointer;
-
     display: inline-block;
-    margin: 0 4px 0px 0;
+    margin: 0 4px 4px 0;
 
-    width: 15px;
-    height: 15px;
+    border: 1px solid transparent;
   }
 
+  .colorpicker-icon,
   .colorpicker div:hover,
   .colorpicker div.active {
-    width: 13px;
-    height: 13px;
-
     border: 1px solid black;
   }
-
-.colorpicker-icon {
-  cursor: pointer;
-
-  display: inline-block;
-
-  width: 13px;
-  height: 13px;
-
-  border: 1px solid black;
-}
