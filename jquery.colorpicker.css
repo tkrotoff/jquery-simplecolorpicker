@@ -62,40 +62,31 @@
           background-clip: padding-box;
 }
 
-  .colorpicker ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+  .colorpicker div {
+    cursor: pointer;
+
+    display: inline-block;
+    margin: 0 4px 0px 0;
+
+    width: 15px;
+    height: 15px;
   }
 
-    .colorpicker ul li {
-      float: left;
-      margin: 0 4px 4px 0;
-    }
+  .colorpicker div:hover,
+  .colorpicker div.active {
+    width: 13px;
+    height: 13px;
 
-      .colorpicker ul li a {
-        display: block;
-
-        width: 15px;
-        height: 15px;
-
-        text-indent: -100000px;
-      }
-
-      .colorpicker ul li a:hover,
-      .colorpicker ul li a.active {
-        width: 13px;
-        height: 13px;
-
-        border: 1px solid black;
-      }
+    border: 1px solid black;
+  }
 
 .colorpicker-icon {
-  display: inline-block;
   cursor: pointer;
 
-  width: 15px;
-  height: 15px;
+  display: inline-block;
+
+  width: 13px;
+  height: 13px;
 
   border: 1px solid black;
 }

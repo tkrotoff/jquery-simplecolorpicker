@@ -21,28 +21,26 @@
     this.select.hide();
 
     // Build the list of colors
-    // <li><a href="#" title="Green" style="background-color: #7bd148;">#7bd148</a></li>
+    // <div title="Green" style="background-color: #7bd148;"></div>
     var colorList = '';
-    colorList += '<ul>';
     $('option', this.select).each(function() {
       var option = $(this);
       var color = option.val();
       var title = option.text();
-      colorList += '<li><a href="#" title="' + title + '" style="background-color: ' + color + ';">' + color + '</a></li>';
+      colorList += '<div title="' + title + '" style="background-color: ' + color + ';"></div>';
     });
-    colorList += '</ul>';
 
     if (this.options.picker) {
       this.icon = $('<span class="colorpicker-icon" title="' + this.select.find('option:selected').text() + '" style="background-color: ' + this.select.val() + ';"></span>').insertAfter(this.select);
       this.icon.on('click', $.proxy(this.show, this));
 
-      this.picker = $('<div class="colorpicker picker"></div>').appendTo(document.body);
+      this.picker = $('<span class="colorpicker picker"></span>').appendTo(document.body);
       this.picker.html(colorList);
       this.picker.on('click', $.proxy(this.click, this));
-      this.picker.on('mousedown', $.proxy(this.mousedown, this));
 
       // Hide picker when clicking outside
       $(document).on('mousedown', $.proxy(this.hide, this));
+      this.picker.on('mousedown', $.proxy(this.mousedown, this));
     } else {
       this.inline = $('<span class="colorpicker"></span>').insertAfter(this.select);
       this.inline.html(colorList);
@@ -71,27 +69,24 @@
     },
 
     click: function(e) {
-      var target = $(e.target).closest('a');
+      var target = $(e.target);
       if (target.length == 1) {
         switch (target[0].nodeName.toLowerCase()) {
 
           // When you click on a color inside the picker
-          case 'a':
-            // The color is stored inside the link
-            var color = target.text();
-
-            // The title ("Green", "Blue"...)
+          case 'div':
+            var color = target.css('background-color');
             var title = target.attr('title');
 
-            // Mark this link as the active one
-            target.parent().siblings().find('a').removeClass('active');
+            // Mark this div as the active one
+            target.parent().find('div').removeClass('active');
             target.addClass('active');
 
             if (this.options.picker) {
               // Change icon color
               this.icon.css('background-color', color);
 
-              // Icon tooltip
+              // Change icon tooltip
               this.icon.attr('title', title);
 
               // Hide the picker
@@ -99,27 +94,44 @@
             }
 
             // Change select value
-            this.select.val(color).change();
+            this.select.val(this.rgb2hex(color)).change();
 
             break;
+
         }
       }
     },
 
+    /**
+     * Prevents the mousedown event from "eating" the click event.
+     */
     mousedown: function(e) {
       e.stopPropagation();
       e.preventDefault();
     },
 
     /**
-     * Inverts a hex-color
+     * Inverts a hex-color.
      */
-    colorInvert: function(colorHex) {
-      var r = colorHex.substr(0, 2);
-      var g = colorHex.substr(2, 2);
-      var b = colorHex.substr(4, 2);
+    invertColor: function(hex) {
+      var r = hex.substr(0, 2);
+      var g = hex.substr(2, 2);
+      var b = hex.substr(4, 2);
 
       return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
+    },
+
+    /**
+     * Converts a RGB color to its hexadecimal value.
+     *
+     * See http://stackoverflow.com/questions/1740700/get-hex-value-rather-than-rgb-value-using-jquery
+     */
+    rgb2hex: function(rgb) {
+      rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+      function hex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+      }
+      return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
     }
   }
 
