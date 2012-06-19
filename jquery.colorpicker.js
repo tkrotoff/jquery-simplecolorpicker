@@ -83,10 +83,7 @@
             target.addClass('active');
 
             if (this.options.picker) {
-              // Change icon color
               this.icon.css('background-color', color);
-
-              // Change icon tooltip
               this.icon.attr('title', title);
 
               // Hide the picker
