@@ -79,7 +79,7 @@
             var title = target.attr('title');
 
             // Mark this div as the active one
-            target.parent().find('div').removeClass('active');
+            target.siblings().removeClass('active');
             target.addClass('active');
 
             if (this.options.picker) {
