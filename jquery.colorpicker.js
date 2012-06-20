@@ -22,19 +22,25 @@
     var fakeText = '&nbsp;&nbsp;&nbsp;&nbsp;';
 
     // Build the list of colors
-    // <div title="Green" style="background-color: #7bd148;"></div>
+    // <div class="selected" title="Green" style="background-color: #7bd148;" role="button"></div>
     var colorList = '';
     $('option', this.select).each(function() {
       var option = $(this);
       var color = option.val();
       var title = option.text();
-      colorList += '<div title="' + title + '" style="background-color: ' + color + ';">' + fakeText + '</div>';
+      var selected = '';
+      if (option.attr('selected')) {
+        selected = 'class="selected"';
+      }
+      colorList += '<div ' + selected + ' title="' + title + '" style="background-color: ' + color + ';" role="button" tabindex="0">'
+                   + fakeText +
+                   '</div>';
     });
 
     if (this.options.picker) {
       var selectText = this.select.find('option:selected').text();
       var selectValue = this.select.val();
-      this.icon = $('<span class="colorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';">'
+      this.icon = $('<span class="colorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
                     + fakeText +
                     '</span>').insertAfter(this.select);
       this.icon.on('click', $.proxy(this.show, this));
@@ -84,9 +90,9 @@
             var color = target.css('background-color');
             var title = target.attr('title');
 
-            // Mark this div as the active one
-            target.siblings().removeClass('active');
-            target.addClass('active');
+            // Mark this div as the selected one
+            target.siblings().removeClass('selected');
+            target.addClass('selected');
 
             if (this.options.picker) {
               this.icon.css('background-color', color);

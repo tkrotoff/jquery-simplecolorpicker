@@ -85,6 +85,6 @@
 
   .colorpicker.icon,
   .colorpicker div:hover,
-  .colorpicker div.active {
+  .colorpicker div.selected {
     border: 1px solid black;
   }
