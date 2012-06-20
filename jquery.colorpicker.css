@@ -68,13 +68,13 @@
           background-clip: padding-box;
 }
 
-  .colorpicker.root {
+  .colorpicker.inline {
     display: inline-block;
     height: 18px;
     padding: 4px 0;
   }
 
-  .colorpicker-icon,
+  .colorpicker.icon,
   .colorpicker div {
     cursor: pointer;
     display: inline-block;
@@ -83,7 +83,7 @@
     border: 1px solid transparent;
   }
 
-  .colorpicker-icon,
+  .colorpicker.icon,
   .colorpicker div:hover,
   .colorpicker div.active {
     border: 1px solid black;

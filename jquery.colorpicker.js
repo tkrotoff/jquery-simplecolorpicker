@@ -34,7 +34,7 @@
     if (this.options.picker) {
       var selectText = this.select.find('option:selected').text();
       var selectValue = this.select.val();
-      this.icon = $('<span class="colorpicker-icon" title="' + selectText + '" style="background-color: ' + selectValue + ';">'
+      this.icon = $('<span class="colorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';">'
                     + fakeText +
                     '</span>').insertAfter(this.select);
       this.icon.on('click', $.proxy(this.show, this));
@@ -47,7 +47,7 @@
       $(document).on('mousedown', $.proxy(this.hide, this));
       this.picker.on('mousedown', $.proxy(this.mousedown, this));
     } else {
-      this.inline = $('<span class="colorpicker root"></span>').insertAfter(this.select);
+      this.inline = $('<span class="colorpicker inline"></span>').insertAfter(this.select);
       this.inline.html(colorList);
       this.inline.on('click', $.proxy(this.click, this));
     }
