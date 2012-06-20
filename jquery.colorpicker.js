@@ -60,9 +60,10 @@
     constructor: Colorpicker,
 
     show: function() {
+      var bootstrapArrowWidth = 16; // Empirical value
       var pos = this.icon.offset();
       this.picker.css({
-        left: pos.left - this.icon.outerWidth() / 2,  // TODO
+        left: pos.left + this.icon.width() / 2 - bootstrapArrowWidth, // Middle of the icon
         top: pos.top + this.icon.outerHeight()
       });
 
