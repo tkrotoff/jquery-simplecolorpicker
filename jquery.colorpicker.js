@@ -78,7 +78,7 @@
       if (target.length == 1) {
         switch (target[0].nodeName.toLowerCase()) {
 
-          // When you click on a color inside the picker
+          // When you click on a color
           case 'div':
             var color = target.css('background-color');
             var title = target.attr('title');
@@ -151,6 +151,7 @@
     // Animation delay
     delay: 0,
 
+    // Show the picker or make it inline
     picker: false
   };
 
