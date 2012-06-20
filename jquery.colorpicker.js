@@ -1,12 +1,9 @@
 /**
  * Very simple jQuery Color Picker.
  *
- * Copyright (C) 2008-2011 Andreas Lagerkvist
  * Copyright (C) 2012 Tanguy Krotoff
  *
- * Original source code and demo: http://andreaslagerkvist.com/jquery/colour-picker/
- *
- * License: http://creativecommons.org/licenses/by/3.0/
+ * Licensed under the MIT license.
  */
 
 !function($) {
