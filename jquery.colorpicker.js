@@ -116,17 +116,6 @@
     },
 
     /**
-     * Inverts a hex-color.
-     */
-    invertColor: function(hex) {
-      var r = hex.substr(0, 2);
-      var g = hex.substr(2, 2);
-      var b = hex.substr(4, 2);
-
-      return 0.212671 * r + 0.715160 * g + 0.072169 * b < 0.5 ? 'ffffff' : '000000'
-    },
-
-    /**
      * Converts a RGB color to its hexadecimal value.
      *
      * See http://stackoverflow.com/questions/1740700/get-hex-value-rather-than-rgb-value-using-jquery
