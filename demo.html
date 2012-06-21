@@ -161,17 +161,17 @@ Change background color:
 <script type="text/javascript">
 
 $(document).ready(function () {
-  $('#select01').colorpicker();
+  $('#select01').simplecolorpicker();
 
-  $('select[name="select02"]').colorpicker({
+  $('select[name="select02"]').simplecolorpicker({
     picker: true
   });
 
-  $('select[name="select03"]').colorpicker().change(function() {
+  $('select[name="select03"]').simplecolorpicker().change(function() {
     $(document.body).css('background-color', $('select[name="select03"]').val());
   });
 
-  $('select[name="select04"]').colorpicker({
+  $('select[name="select04"]').simplecolorpicker({
     picker: true
   }).change(function() {
     $(document.body).css('background-color', $('select[name="select04"]').val());

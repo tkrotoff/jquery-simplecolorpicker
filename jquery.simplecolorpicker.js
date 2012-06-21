@@ -11,9 +11,9 @@
   /**
    * Constructor.
    */
-  var Colorpicker = function(element, options) {
+  var SimpleColorPicker = function(element, options) {
     this.select = $(element);
-    this.options = $.extend({}, $.fn.colorpicker.defaults, options);
+    this.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
 
     this.select.hide();
 
@@ -40,12 +40,12 @@
     if (this.options.picker) {
       var selectText = this.select.find('option:selected').text();
       var selectValue = this.select.val();
-      this.icon = $('<span class="colorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
+      this.icon = $('<span class="simplecolorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
                     + fakeText +
                     '</span>').insertAfter(this.select);
       this.icon.on('click', $.proxy(this.show, this));
 
-      this.picker = $('<span class="colorpicker picker"></span>').appendTo(document.body);
+      this.picker = $('<span class="simplecolorpicker picker"></span>').appendTo(document.body);
       this.picker.html(colorList);
       this.picker.on('click', $.proxy(this.click, this));
 
@@ -53,17 +53,17 @@
       $(document).on('mousedown', $.proxy(this.hide, this));
       this.picker.on('mousedown', $.proxy(this.mousedown, this));
     } else {
-      this.inline = $('<span class="colorpicker inline"></span>').insertAfter(this.select);
+      this.inline = $('<span class="simplecolorpicker inline"></span>').insertAfter(this.select);
       this.inline.html(colorList);
       this.inline.on('click', $.proxy(this.click, this));
     }
   }
 
   /**
-   * Colorpicker class.
+   * SimpleColorPicker class.
    */
-  Colorpicker.prototype = {
-    constructor: Colorpicker,
+  SimpleColorPicker.prototype = {
+    constructor: SimpleColorPicker,
 
     show: function() {
       var bootstrapArrowWidth = 16; // Empirical value
@@ -136,25 +136,25 @@
   /**
    * Plugin definition.
    */
-  $.fn.colorpicker = function(option) {
+  $.fn.simplecolorpicker = function(option) {
     // For HTML element passed to the plugin
     return this.each(function () {
       var $this = $(this),
-      data = $this.data('colorpicker'),
+      data = $this.data('simplecolorpicker'),
       options = typeof option == 'object' && option;
       if (!data) {
-        $this.data('colorpicker', (data = new Colorpicker(this, options)));
+        $this.data('simplecolorpicker', (data = new SimpleColorPicker(this, options)));
       }
       if (typeof option == 'string') data[option]();
     });
   }
 
-  $.fn.colorpicker.Constructor = Colorpicker;
+  $.fn.simplecolorpicker.Constructor = SimpleColorPicker;
 
   /**
    * Default options.
    */
-  $.fn.colorpicker.defaults = {
+  $.fn.simplecolorpicker.defaults = {
     // Animation delay
     delay: 0,
 
