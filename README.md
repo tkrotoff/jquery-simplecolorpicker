@@ -1,6 +1,6 @@
 # Very simple jQuery color picker
 
-Yet another jQuery color picker. This plugin is unobtrusive and integrates very well with Twitter Bootstrap.
+Yet another jQuery color picker. This plugin is unobtrusive and integrates well with Twitter Bootstrap.
 The source code only requires jQuery and is about 200 lines of JavaScript and 100 lines of CSS.
 
 * By default it shows the colors inline:
@@ -11,7 +11,7 @@ The source code only requires jQuery and is about 200 lines of JavaScript and 10
 
 ![simplecolorpicker-picker.png](http://img15.hostingpics.net/pics/748637simplecolorpickerpicker.png)
 
-* It integrates well with Twitter Bootstrap:
+* It integrates well with Twitter Bootstrap if you use this framework:
 
 ![simplecolorpicker-inline-bootstrap.png](http://img15.hostingpics.net/pics/516842simplecolorpickerinlinebootstrap.png)
 
@@ -70,6 +70,16 @@ $('select[name="colorpicker"]').simplecolorpicker({
 
 - picker: show the colors inside a picker instead of inline (default: false)
 - delay: show and hide animation delay (default: 0)
+
+## HTML5 new color input
+
+HTML5 provides a new input to select colors. Its implementation inside modern browsers is still lacking.
+The new color input does not provide any option to customize the color list and
+most of the time the widget is less user-friendly than the one provided by simplecolorpicker.
+
+See http://slides.html5rocks.com/#new-form-types
+
+See http://dev.w3.org/html5/markup/input.color.html#input.color
 
 ## Ruby on Rails
 
