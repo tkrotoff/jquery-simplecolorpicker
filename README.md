@@ -1,57 +1,81 @@
 # Very simple jQuery color picker
 
-Yet another jQuery color picker. The look integrates very well with Bootstrap Twitter.
-Design and colors taken from Google Calendar.
-The source code only requires jQuery and is about 100 lines of JavaScript.
+Yet another jQuery color picker. This plugin is unobtrusive and integrates very well with Twitter Bootstrap.
+The source code only requires jQuery and is about 200 lines of JavaScript and 100 lines of CSS.
 
-![Screenshot](https://raw.github.com/tkrotoff/jquery-colorpicker/master/screenshot.png)
+* By default it shows the colors inline:
+
+![simplecolorpicker-inline.png](http://img15.hostingpics.net/pics/179473simplecolorpickerinline.png)
+
+* You can show the colors inside a picker:
+
+![simplecolorpicker-picker.png](http://img15.hostingpics.net/pics/748637simplecolorpickerpicker.png)
+
+* It integrates well with Twitter Bootstrap:
+
+![simplecolorpicker-inline-bootstrap.png](http://img15.hostingpics.net/pics/516842simplecolorpickerinlinebootstrap.png)
+
+* And the whole is unobtrusive and based on the regular HTML select tag:
+
+![simplecolorpicker-select.png](http://img15.hostingpics.net/pics/368680simplecolorpickerselect.png)
 
 ## How to use
 
-Call the color picker via JavaScript:
+Create a HTML select:
 
-    $('#mycolorpicker').colorpicker();
+```html
+<select name="colorpicker">
+  <!-- Colors from Google Calendar -->
+  <option value="#7bd148">Green</option>
+  <option value="#5484ed">Bold blue</option>
+  <option value="#a4bdfc">Blue</option>
+  <option value="#46d6db">Turquoise</option>
+  <option value="#7ae7bf">Light green</option>
+  <option value="#51b749">Bold green</option>
+  <option value="#fbd75b">Yellow</option>
+  <option value="#ffb878">Orange</option>
+  <option value="#ff887c">Red</option>
+  <option value="#dc2127">Bold red</option>
+  <option value="#dbadff">Purple</option>
+  <option value="#e1e1e1">Gray</option>
+</select>
+```
+
+add the plugin files:
+
+```html
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+<script src="jquery.simplecolorpicker.js"></script>
+
+<link rel="stylesheet" type="text/css" href="jquery.simplecolorpicker.css"/>
+```
+
+then call the plugin:
+
+```javascript
+$('select[name="colorpicker"]').simplecolorpicker();
+```
 
 and pass some options if needed:
 
-    $('#mycolorpicker').colorpicker({
-      colors: ["FFFFFF", "000000", "111FFF", "C0C0C0", "FFF000"],
-      delay: 500
-    }).on('changeColor', function (event) {
-      $(document.body).css('background-color', event.color);
-    });
+```javascript
+$('select[name="colorpicker"]').simplecolorpicker({
+  picker: true
+}).change(function() {
+  $(document.body).css('background-color', $('select[name="colorpicker"]').val());
+});
+```
 
 ### Options
 
-- colors: an array of colors to initialize the picker with
-- delay: show and hide animation delay
+- picker: show the colors inside a picker instead of inline (default: false)
+- delay: show and hide animation delay (default: 0)
 
-### Events
+## Ruby on Rails
 
-- changeColor: triggered when a color has been selected by the user
-
-## Original source code
-
-The [original source code](http://andreaslagerkvist.com/jquery/colour-picker/) is from [Andreas Lagerkvist](http://andreaslagerkvist.com/).
-I have extracted the original source code from [svn](http://code.google.com/p/aframework/source/browse/trunk/aFramework/Modules/Base/jquery.colourPicker.js) to git using these commands:
-
-    git svn clone http://aframework.googlecode.com/svn/ --no-metadata -A authors.txt -T trunk/aFramework/Modules/Base colorpicker
-    git filter-branch -f --prune-empty --index-filter 'git ls-tree -r --name-only --full-tree $GIT_COMMIT | grep -v "jquery.colourPicker.js" | grep -v "jquery.colourPicker.css" | xargs git rm --cached -r' -- --all
-    git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch aframework.js' --prune-empty -- --all
-    rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
-
-Then I rewrote the commits using `git rebase -i`.
+A gem is available at https://github.com/tkrotoff/jquery-simplecolorpicker-rails
 
 ## Copyright and license
 
-Copyright (C) 2008-2011 Andreas Lagerkvist
-
+Licensed under the MIT license.
 Copyright (C) 2012 Tanguy Krotoff
-
-[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/), you are free:
-
-- to Share — to copy, distribute and transmit the work
-- to Remix — to adapt the work
-- to make commercial use of the work
-
-You must attribute the work in the manner specified by the author.
