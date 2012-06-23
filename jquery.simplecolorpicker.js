@@ -6,7 +6,8 @@
  * Licensed under the MIT license.
  */
 
-!function($) {
+(function($) {
+  "use strict";
 
   /**
    * Constructor.
@@ -33,16 +34,16 @@
         selected = 'class="selected"';
       }
       colorList += '<div ' + selected + ' title="' + title + '" style="background-color: ' + color + ';" role="button" tabindex="0">'
-                   + fakeText +
-                   '</div>';
+                   + fakeText
+                   + '</div>';
     });
 
     if (this.options.picker) {
       var selectText = this.select.find('option:selected').text();
       var selectValue = this.select.val();
       this.icon = $('<span class="simplecolorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
-                    + fakeText +
-                    '</span>').insertAfter(this.select);
+                    + fakeText
+                    + '</span>').insertAfter(this.select);
       this.icon.on('click', $.proxy(this.show, this));
 
       this.picker = $('<span class="simplecolorpicker picker"></span>').appendTo(document.body);
@@ -57,7 +58,7 @@
       this.inline.html(colorList);
       this.inline.on('click', $.proxy(this.click, this));
     }
-  }
+  };
 
   /**
    * SimpleColorPicker class.
@@ -82,31 +83,27 @@
 
     click: function(e) {
       var target = $(e.target);
-      if (target.length == 1) {
-        switch (target[0].nodeName.toLowerCase()) {
-
+      if (target.length === 1) {
+        if (target[0].nodeName.toLowerCase() === 'div') {
           // When you click on a color
-          case 'div':
-            var color = target.css('background-color');
-            var title = target.attr('title');
 
-            // Mark this div as the selected one
-            target.siblings().removeClass('selected');
-            target.addClass('selected');
+          var color = target.css('background-color');
+          var title = target.attr('title');
 
-            if (this.options.picker) {
-              this.icon.css('background-color', color);
-              this.icon.attr('title', title);
+          // Mark this div as the selected one
+          target.siblings().removeClass('selected');
+          target.addClass('selected');
 
-              // Hide the picker
-              this.hide();
-            }
+          if (this.options.picker) {
+            this.icon.css('background-color', color);
+            this.icon.attr('title', title);
 
-            // Change select value
-            this.select.val(this.rgb2hex(color)).change();
+            // Hide the picker
+            this.hide();
+          }
 
-            break;
-
+          // Change select value
+          this.select.val(this.rgb2hex(color)).change();
         }
       }
     },
@@ -126,7 +123,7 @@
      */
     rgb2hex: function(rgb) {
       function hex(x) {
-        return ("0" + parseInt(x).toString(16)).slice(-2);
+        return ("0" + parseInt(x, 10).toString(16)).slice(-2);
       }
 
       var matches = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -138,23 +135,25 @@
         return "#" + hex(matches[1]) + hex(matches[2]) + hex(matches[3]);
       }
     }
-  }
+  };
 
   /**
    * Plugin definition.
    */
   $.fn.simplecolorpicker = function(option) {
     // For HTML element passed to the plugin
-    return this.each(function () {
+    return this.each(function() {
       var $this = $(this),
-      data = $this.data('simplecolorpicker'),
-      options = typeof option == 'object' && option;
+        data = $this.data('simplecolorpicker'),
+        options = typeof option === 'object' && option;
       if (!data) {
         $this.data('simplecolorpicker', (data = new SimpleColorPicker(this, options)));
       }
-      if (typeof option == 'string') data[option]();
+      if (typeof option === 'string') {
+        data[option]();
+      }
     });
-  }
+  };
 
   $.fn.simplecolorpicker.Constructor = SimpleColorPicker;
 
@@ -169,4 +168,4 @@
     picker: false
   };
 
-}(window.jQuery);
+})(jQuery);
