@@ -71,6 +71,10 @@ $('select[name="colorpicker"]').simplecolorpicker({
 - picker: show the colors inside a picker instead of inline (default: false)
 - delay: show and hide animation delay (default: 0)
 
+## Browser support
+
+Simplecolorpicker supports all modern browsers starting with Internet Explorer 8 included.
+
 ## HTML5 new color input
 
 HTML5 provides a new input to select colors. Its implementation inside modern browsers is still lacking.
