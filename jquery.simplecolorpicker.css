@@ -78,13 +78,15 @@
   .simplecolorpicker div {
     cursor: pointer;
     display: inline-block;
-    margin: 0 4px 4px 0;
 
     -webkit-border-radius: 3px;
        -moz-border-radius: 3px;
             border-radius: 3px;
 
     border: 1px solid transparent;
+  }
+  .simplecolorpicker div {
+    margin: 0 4px 4px 0;
   }
 
   .simplecolorpicker div:hover,
