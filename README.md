@@ -3,6 +3,8 @@
 Yet another jQuery color picker. This plugin is unobtrusive and integrates well with Twitter Bootstrap.
 The source code only requires jQuery and is about 200 lines of JavaScript and 100 lines of CSS.
 
+Try the demo [online](http://plnkr.co/edit/VVclW0?p=preview) on Plunker.
+
 * By default it shows the colors inline:
 
 ![simplecolorpicker-inline.png](http://img15.hostingpics.net/pics/179473simplecolorpickerinline.png)
