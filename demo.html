@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Color picker for jQuery</title>
   <meta name="description" content="A very simple jQuery color picker plugin."/>
 
@@ -30,9 +31,9 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="select01">Select list</label>
+      <label class="control-label" for="colorpicker-inline">Select list</label>
       <div class="controls">
-        <select id="select01">
+        <select name="colorpicker-inline" id="colorpicker-inline">
           <!-- Colors from Google Calendar -->
           <option value="#7bd148">Green</option>
           <option value="#5484ed">Bold blue</option>
@@ -76,8 +77,7 @@
 </form>
 
 Pick a color:
-<select name="select02">
-  <!-- Colors from Google Calendar -->
+<select name="colorpicker-picker">
   <option value="#7bd148">Green</option>
   <option value="#5484ed">Bold blue</option>
   <option value="#a4bdfc">Blue</option>
@@ -91,12 +91,11 @@ Pick a color:
   <option value="#dbadff">Purple</option>
   <option value="#e1e1e1">Gray</option>
 </select>
-The colors are from Google Calendar
 
 <br/><br/>
 
 Change background color:
-<select name="select03">
+<select name="colorpicker-inline-background">
   <!-- More colors from Google Calendar -->
   <option value="#ac725e">#ac725e</option>
   <option value="#d06b64">#d06b64</option>
@@ -127,8 +126,7 @@ Change background color:
 <br/><br/>
 
 Change background color:
-<select name="select04">
-  <!-- More colors from Google Calendar -->
+<select name="colorpicker-picker-background">
   <option value="#ac725e">#ac725e</option>
   <option value="#d06b64">#d06b64</option>
   <option value="#f83a22">#f83a22</option>
@@ -155,25 +153,77 @@ Change background color:
   <option value="#a47ae2">#a47ae2</option>
 </select>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+<br/><br/>
+
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    Pick a color:
+    <select name="colorpicker-inline">
+      <option value="#7bd148">Green</option>
+      <option value="#5484ed">Bold blue</option>
+      <option value="#a4bdfc">Blue</option>
+      <option value="#46d6db">Turquoise</option>
+      <option value="#7ae7bf">Light green</option>
+      <option value="#51b749">Bold green</option>
+      <option value="#fbd75b">Yellow</option>
+      <option value="#ffb878">Orange</option>
+      <option value="#ff887c">Red</option>
+      <option value="#dc2127">Bold red</option>
+      <option value="#dbadff">Purple</option>
+      <option value="#e1e1e1">Gray</option>
+    </select>
+    <br/><br/>
+    Pick another color:
+    <select name="colorpicker-picker">
+      <option value="#7bd148">Green</option>
+      <option value="#5484ed">Bold blue</option>
+      <option value="#a4bdfc">Blue</option>
+      <option value="#46d6db">Turquoise</option>
+      <option value="#7ae7bf">Light green</option>
+      <option value="#51b749">Bold green</option>
+      <option value="#fbd75b">Yellow</option>
+      <option value="#ffb878">Orange</option>
+      <option value="#ff887c">Red</option>
+      <option value="#dc2127">Bold red</option>
+      <option value="#dbadff">Purple</option>
+      <option value="#e1e1e1">Gray</option>
+    </select>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
 <script src="jquery.simplecolorpicker.js"></script>
 
 <script>
 $(document).ready(function() {
-  $('#select01').simplecolorpicker();
+  $('select[name="colorpicker-inline"]').simplecolorpicker();
 
-  $('select[name="select02"]').simplecolorpicker({
+  $('select[name="colorpicker-picker"]').simplecolorpicker({
     picker: true
   });
 
-  $('select[name="select03"]').simplecolorpicker().change(function() {
-    $(document.body).css('background-color', $('select[name="select03"]').val());
+  $('select[name="colorpicker-inline-background"]').simplecolorpicker().change(function() {
+    $(document.body).css('background-color', $('select[name="colorpicker-inline-background"]').val());
   });
 
-  $('select[name="select04"]').simplecolorpicker({
+  $('select[name="colorpicker-picker-background"]').simplecolorpicker({
     picker: true
   }).change(function() {
-    $(document.body).css('background-color', $('select[name="select04"]').val());
+    $(document.body).css('background-color', $('select[name="colorpicker-picker-background"]').val());
   });
 });
 </script>

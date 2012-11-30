@@ -10,7 +10,7 @@
  * See http://twitter.github.com/bootstrap/assets/css/bootstrap.css
  */
 
-.simplecolorpicker:before {
+.simplecolorpicker.picker:before {
   position: absolute;
   top: -7px;
   left: 9px;
@@ -22,7 +22,7 @@
   content: '';
 }
 
-.simplecolorpicker:after {
+.simplecolorpicker.picker:after {
   position: absolute;
   top: -6px;
   left: 10px;
@@ -37,7 +37,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: 1051; /* Above Bootstrap modal (z-index of 1050) */
   display: none;
   float: left;
 
