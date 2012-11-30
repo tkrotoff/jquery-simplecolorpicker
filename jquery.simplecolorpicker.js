@@ -139,6 +139,7 @@
 
   /**
    * Plugin definition.
+   * How to use: $('#id').simplecolorpicker()
    */
   $.fn.simplecolorpicker = function(option) {
     // For HTML element passed to the plugin
@@ -146,7 +147,7 @@
       var $this = $(this),
         data = $this.data('simplecolorpicker'),
         options = typeof option === 'object' && option;
-      if (!data) {
+      if (data === undefined) {
         $this.data('simplecolorpicker', (data = new SimpleColorPicker(this, options)));
       }
       if (typeof option === 'string') {
@@ -154,8 +155,6 @@
       }
     });
   };
-
-  $.fn.simplecolorpicker.Constructor = SimpleColorPicker;
 
   /**
    * Default options.
