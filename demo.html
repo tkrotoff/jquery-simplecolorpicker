@@ -12,6 +12,14 @@
 
 <body>
 
+<!-- Button to init the jQuery plugin -->
+<button id="init" class="btn btn-primary">Init the jQuery plugin</button>
+
+<!-- Button to destroy the jQuery plugin -->
+<button id="destroy" class="btn btn-danger">Destroy the jQuery plugin</button>
+
+<br/><br/>
+
 <form class="form-horizontal">
   <fieldset>
     <legend>Twitter Bootstrap form</legend>
@@ -210,20 +218,26 @@ Change background color:
 
 <script>
 $(document).ready(function() {
-  $('select[name="colorpicker-inline"]').simplecolorpicker();
-
-  $('select[name="colorpicker-picker"]').simplecolorpicker({
-    picker: true
-  });
-
-  $('select[name="colorpicker-inline-background"]').simplecolorpicker().change(function() {
+  $('select[name="colorpicker-inline-background"]').change(function() {
     $(document.body).css('background-color', $('select[name="colorpicker-inline-background"]').val());
   });
 
-  $('select[name="colorpicker-picker-background"]').simplecolorpicker({
-    picker: true
-  }).change(function() {
+  $('select[name="colorpicker-picker-background"]').change(function() {
     $(document.body).css('background-color', $('select[name="colorpicker-picker-background"]').val());
+  });
+
+  $('#init').on('click', function() {
+    $('select[name="colorpicker-inline"]').simplecolorpicker();
+    $('select[name="colorpicker-picker"]').simplecolorpicker({picker: true});
+    $('select[name="colorpicker-inline-background"]').simplecolorpicker();
+    $('select[name="colorpicker-picker-background"]').simplecolorpicker({picker: true});
+  });
+
+  $('#destroy').on('click', function() {
+    $('select[name="colorpicker-inline"]').simplecolorpicker('destroy');
+    $('select[name="colorpicker-picker"]').simplecolorpicker('destroy');
+    $('select[name="colorpicker-inline-background"]').simplecolorpicker('destroy');
+    $('select[name="colorpicker-picker-background"]').simplecolorpicker('destroy');
   });
 });
 </script>

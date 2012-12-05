@@ -13,51 +13,7 @@
    * Constructor.
    */
   var SimpleColorPicker = function(element, options) {
-    this.select = $(element);
-    this.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
-
-    this.select.hide();
-
-    // Trick: fix span alignment
-    // When a span does not contain any text, its alignment is not correct
-    var fakeText = '&nbsp;&nbsp;&nbsp;&nbsp;';
-
-    // Build the list of colors
-    // <div class="selected" title="Green" style="background-color: #7bd148;" role="button"></div>
-    var colorList = '';
-    $('option', this.select).each(function() {
-      var option = $(this);
-      var color = option.val();
-      var title = option.text();
-      var selected = '';
-      if (option.attr('selected')) {
-        selected = 'class="selected"';
-      }
-      colorList += '<div ' + selected + ' title="' + title + '" style="background-color: ' + color + ';" role="button" tabindex="0">'
-                   + fakeText
-                   + '</div>';
-    });
-
-    if (this.options.picker) {
-      var selectText = this.select.find('option:selected').text();
-      var selectValue = this.select.val();
-      this.icon = $('<span class="simplecolorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
-                    + fakeText
-                    + '</span>').insertAfter(this.select);
-      this.icon.on('click', $.proxy(this.show, this));
-
-      this.picker = $('<span class="simplecolorpicker picker"></span>').appendTo(document.body);
-      this.picker.html(colorList);
-      this.picker.on('click', $.proxy(this.click, this));
-
-      // Hide picker when clicking outside
-      $(document).on('mousedown', $.proxy(this.hide, this));
-      this.picker.on('mousedown', $.proxy(this.mousedown, this));
-    } else {
-      this.inline = $('<span class="simplecolorpicker inline"></span>').insertAfter(this.select);
-      this.inline.html(colorList);
-      this.inline.on('click', $.proxy(this.click, this));
-    }
+    this.init('simplecolorpicker', element, options);
   };
 
   /**
@@ -66,19 +22,69 @@
   SimpleColorPicker.prototype = {
     constructor: SimpleColorPicker,
 
-    show: function() {
-      var bootstrapArrowWidth = 16; // Empirical value
-      var pos = this.icon.offset();
-      this.picker.css({
-        left: pos.left + this.icon.width() / 2 - bootstrapArrowWidth, // Middle of the icon
-        top: pos.top + this.icon.outerHeight()
+    init: function(type, element, options) {
+      this.type = type;
+
+      this.$select = $(element);
+      this.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
+
+      this.$select.hide();
+
+      // Trick: fix span alignment
+      // When a span does not contain any text, its alignment is not correct
+      var fakeText = '&nbsp;&nbsp;&nbsp;&nbsp;';
+
+      // Build the list of colors
+      // <div class="selected" title="Green" style="background-color: #7bd148;" role="button"></div>
+      var colorList = '';
+      $('option', this.$select).each(function() {
+        var option = $(this);
+        var color = option.val();
+        var title = option.text();
+        var selected = '';
+        if (option.attr('selected')) {
+          selected = 'class="selected"';
+        }
+        colorList += '<div ' + selected + ' title="' + title + '" style="background-color: ' + color + ';" role="button" tabindex="0">'
+                     + fakeText
+                     + '</div>';
       });
 
-      this.picker.show(this.options.delay);
+      if (this.options.picker) {
+        var selectText = this.$select.find('option:selected').text();
+        var selectValue = this.$select.val();
+        this.$icon = $('<span class="simplecolorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
+                      + fakeText
+                      + '</span>').insertAfter(this.$select);
+        this.$icon.on('click.' + this.type, $.proxy(this.showPicker, this));
+
+        this.$picker = $('<span class="simplecolorpicker picker"></span>').appendTo(document.body);
+        this.$picker.html(colorList);
+        this.$picker.on('click.' + this.type, $.proxy(this.click, this));
+
+        // Hide picker when clicking outside
+        $(document).on('mousedown.' + this.type, $.proxy(this.hidePicker, this));
+        this.$picker.on('mousedown.' + this.type, $.proxy(this.mousedown, this));
+      } else {
+        this.$inline = $('<span class="simplecolorpicker inline"></span>').insertAfter(this.$select);
+        this.$inline.html(colorList);
+        this.$inline.on('click.' + this.type, $.proxy(this.click, this));
+      }
     },
 
-    hide: function() {
-      this.picker.hide(this.options.delay);
+    showPicker: function() {
+      var bootstrapArrowWidth = 16; // Empirical value
+      var pos = this.$icon.offset();
+      this.$picker.css({
+        left: pos.left + this.$icon.width() / 2 - bootstrapArrowWidth, // Middle of the icon
+        top: pos.top + this.$icon.outerHeight()
+      });
+
+      this.$picker.show(this.options.delay);
+    },
+
+    hidePicker: function() {
+      this.$picker.hide(this.options.delay);
     },
 
     click: function(e) {
@@ -95,15 +101,15 @@
           target.addClass('selected');
 
           if (this.options.picker) {
-            this.icon.css('background-color', color);
-            this.icon.attr('title', title);
+            this.$icon.css('background-color', color);
+            this.$icon.attr('title', title);
 
             // Hide the picker
-            this.hide();
+            this.hidePicker();
           }
 
-          // Change select value
-          this.select.val(this.rgb2hex(color)).change();
+          // Change HTML select value
+          this.$select.val(this.rgb2hex(color)).change();
         }
       }
     },
@@ -134,6 +140,22 @@
       } else {
         return '#' + hex(matches[1]) + hex(matches[2]) + hex(matches[3]);
       }
+    },
+
+    destroy: function() {
+      if (this.options.picker) {
+        this.$icon.off('.' + this.type);
+        this.$icon.remove();
+        this.$picker.off('.' + this.type);
+        this.$picker.remove();
+        $(document).off('.' + this.type);
+      } else {
+        this.$inline.off('.' + this.type);
+        this.$inline.remove();
+      }
+
+      this.$select.removeData(this.type);
+      this.$select.show();
     }
   };
 
