@@ -7,7 +7,7 @@
  */
 
 (function($) {
-  "use strict";
+  'use strict';
 
   /**
    * Constructor.
@@ -123,7 +123,7 @@
      */
     rgb2hex: function(rgb) {
       function hex(x) {
-        return ("0" + parseInt(x, 10).toString(16)).slice(-2);
+        return ('0' + parseInt(x, 10).toString(16)).slice(-2);
       }
 
       var matches = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -132,7 +132,7 @@
         // Variable rgb is already a hexadecimal value
         return rgb;
       } else {
-        return "#" + hex(matches[1]) + hex(matches[2]) + hex(matches[3]);
+        return '#' + hex(matches[1]) + hex(matches[2]) + hex(matches[3]);
       }
     }
   };
