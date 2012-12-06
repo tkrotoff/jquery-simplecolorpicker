@@ -12,8 +12,8 @@
   /**
    * Constructor.
    */
-  var SimpleColorPicker = function(element, options) {
-    this.init('simplecolorpicker', element, options);
+  var SimpleColorPicker = function(select, options) {
+    this.init('simplecolorpicker', select, options);
   };
 
   /**
@@ -22,10 +22,10 @@
   SimpleColorPicker.prototype = {
     constructor: SimpleColorPicker,
 
-    init: function(type, element, options) {
+    init: function(type, select, options) {
       this.type = type;
 
-      this.$select = $(element);
+      this.$select = $(select);
       this.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
 
       this.$select.hide();
@@ -103,8 +103,6 @@
           if (this.options.picker) {
             this.$icon.css('background-color', color);
             this.$icon.attr('title', title);
-
-            // Hide the picker
             this.hidePicker();
           }
 
