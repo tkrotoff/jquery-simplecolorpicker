@@ -239,6 +239,9 @@ $(document).ready(function() {
     $('select[name="colorpicker-inline-background"]').simplecolorpicker('destroy');
     $('select[name="colorpicker-picker-background"]').simplecolorpicker('destroy');
   });
+
+  // By default, activate simplecolorpicker plugin on HTML selects
+  $('#init').trigger('click');
 });
 </script>
 
