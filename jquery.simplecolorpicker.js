@@ -65,7 +65,7 @@
         var color = option.val();
         var title = option.text();
         var selected = '';
-        if (option.attr('selected') || selectValue === color) {
+        if (option.prop('selected') === true || selectValue === color) {
           selected = 'class="selected"';
         }
         colors += '<div ' + selected + ' title="' + title + '" style="background-color: ' + color + ';" role="button" tabindex="0">'
@@ -120,7 +120,7 @@
      */
     selectColorDiv: function(colorDiv) {
       var color = colorDiv.css('background-color');
-      var title = colorDiv.attr('title');
+      var title = colorDiv.prop('title');
 
       // Mark this div as the selected one
       colorDiv.siblings().removeClass('selected');
@@ -128,7 +128,7 @@
 
       if (this.options.picker) {
         this.$icon.css('background-color', color);
-        this.$icon.attr('title', title);
+        this.$icon.prop('title', title);
         this.hidePicker();
       }
 
