@@ -133,7 +133,7 @@
       }
 
       // Change HTML select value
-      this.$select.val(this.rgb2hex(color)).change();
+      this.$select.val(this.rgb2hex(color));
     },
 
     /**
@@ -145,6 +145,7 @@
         if (target[0].nodeName.toLowerCase() === 'div') {
           // When you click on a color, make it the new selected one
           this.selectColorDiv(target);
+          this.$select.trigger('change');
         }
       }
     },
