@@ -56,6 +56,7 @@
           <option value="#dbadff">Purple</option>
           <option value="#e1e1e1">Gray</option>
         </select>
+        &lt;== Should select #fbd75b after 1 second
       </div>
     </div>
     <div class="control-group">
@@ -104,7 +105,6 @@ Pick a color:
 
 Change background color:
 <select name="colorpicker-inline-background">
-  <!-- More colors from Google Calendar -->
   <option value="#ac725e">#ac725e</option>
   <option value="#d06b64">#d06b64</option>
   <option value="#f83a22">#f83a22</option>
@@ -114,8 +114,8 @@ Change background color:
   <option value="#42d692">#42d692</option>
   <option value="#16a765">#16a765</option>
   <option value="#7bd148">#7bd148</option>
-  <option value="#b3dc6c">#b3dc6c</option>
-  <option value="#fbe983">#fbe983</option>
+  <option value="#7bd148">#7bd148</option>
+  <option value="#7bd148">#7bd148</option>
   <option value="#fad165">#fad165</option>
   <option value="#92e1c0">#92e1c0</option>
   <option value="#9fe1e7">#9fe1e7</option>
@@ -130,11 +130,13 @@ Change background color:
   <option value="#cd74e6">#cd74e6</option>
   <option value="#a47ae2">#a47ae2</option>
 </select>
+&lt;== Should select #7bd148 after 2 seconds
 
 <br/><br/>
 
 Change background color:
 <select name="colorpicker-picker-background">
+  <!-- More colors from Google Calendar -->
   <option value="#ac725e">#ac725e</option>
   <option value="#d06b64">#d06b64</option>
   <option value="#f83a22">#f83a22</option>
@@ -160,6 +162,7 @@ Change background color:
   <option value="#cd74e6">#cd74e6</option>
   <option value="#a47ae2">#a47ae2</option>
 </select>
+&lt;== Should generate a JavaScript error after 3 seconds
 
 <br/><br/>
 
@@ -218,13 +221,25 @@ Change background color:
 
 <script>
 $(document).ready(function() {
+  setTimeout(function() {
+    $('#colorpicker-inline').simplecolorpicker('selectColor', '#fbd75b');
+  }, 1000);
+
   $('select[name="colorpicker-inline-background"]').change(function() {
     $(document.body).css('background-color', $('select[name="colorpicker-inline-background"]').val());
   });
+  setTimeout(function() {
+    // colorpicker-inline-background contains 3 times the color #7bd148
+    $('select[name="colorpicker-inline-background"]').simplecolorpicker('selectColor', '#7bd148');
+  }, 2000);
 
   $('select[name="colorpicker-picker-background"]').change(function() {
     $(document.body).css('background-color', $('select[name="colorpicker-picker-background"]').val());
   });
+  setTimeout(function() {
+    // Generates a JavaScript error
+    $('select[name="colorpicker-picker-background"]').simplecolorpicker('selectColor', 'unknown');
+  }, 3000);
 
   $('#init').on('click', function() {
     $('select[name="colorpicker-inline"]').simplecolorpicker();
