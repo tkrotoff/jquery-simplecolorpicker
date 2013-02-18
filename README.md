@@ -94,4 +94,4 @@ A gem is available at https://github.com/tkrotoff/jquery-simplecolorpicker-rails
 ## Copyright and license
 
 Licensed under the MIT license.
-Copyright (C) 2012 Tanguy Krotoff
+Copyright (C) 2012-2013 Tanguy Krotoff <tkrotoff@gmail.com>
