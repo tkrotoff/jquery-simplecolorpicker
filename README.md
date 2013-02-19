@@ -3,7 +3,7 @@
 Yet another jQuery color picker. This plugin is unobtrusive and integrates well with Twitter Bootstrap (it works just fine without).
 The source code only requires jQuery and is about 200 lines of JavaScript and 100 lines of CSS.
 
-Try the demo [online](http://plnkr.co/edit/VVclW0?p=preview) on Plunker.
+See the [online demo](http://plnkr.co/edit/VVclW0?p=preview).
 
 * By default it shows the colors inline:
 
@@ -25,7 +25,7 @@ Try the demo [online](http://plnkr.co/edit/VVclW0?p=preview) on Plunker.
 
 Create a HTML select:
 
-```html
+```HTML
 <select name="colorpicker">
   <!-- Colors from Google Calendar -->
   <option value="#7bd148">Green</option>
@@ -45,8 +45,8 @@ Create a HTML select:
 
 add the plugin files:
 
-```html
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+```HTML
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="jquery.simplecolorpicker.js"></script>
 
 <link rel="stylesheet" type="text/css" href="jquery.simplecolorpicker.css"/>
@@ -54,16 +54,18 @@ add the plugin files:
 
 then call the plugin:
 
-```javascript
+```JavaScript
 $('select[name="colorpicker"]').simplecolorpicker();
+$('select[name="colorpicker"]').simplecolorpicker('selectColor', '#7bd148');
+$('select[name="colorpicker"]').simplecolorpicker('destroy');
 ```
 
 and pass some options if needed:
 
-```javascript
+```JavaScript
 $('select[name="colorpicker"]').simplecolorpicker({
   picker: true
-}).change(function() {
+}).on('change', function() {
   $(document.body).css('background-color', $('select[name="colorpicker"]').val());
 });
 ```
@@ -87,6 +89,11 @@ See http://slides.html5rocks.com/#new-form-types
 
 See http://dev.w3.org/html5/markup/input.color.html#input.color
 
+## AngularJS directive
+
+See [simplecolorpicker directive](http://plnkr.co/edit/rKM3QWXDC3vGVPe3QFWV?p=preview).
+If you find a solution for the `setTimeout()` hack, please tell me.
+
 ## Ruby on Rails
 
 A gem is available at https://github.com/tkrotoff/jquery-simplecolorpicker-rails
@@ -94,4 +101,4 @@ A gem is available at https://github.com/tkrotoff/jquery-simplecolorpicker-rails
 ## Copyright and license
 
 Licensed under the MIT license.
-Copyright (C) 2012-2013 Tanguy Krotoff <tkrotoff@gmail.com>
+Copyright (C) 2012-2013 Tanguy Krotoff
