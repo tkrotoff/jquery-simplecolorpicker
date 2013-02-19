@@ -94,7 +94,7 @@
       var self = this;
 
       var colorDiv = self.$colorList.find('div').filter(function() {
-        return $(this).data('color') === color;
+        return $(this).data('color').toLowerCase() === color.toLowerCase();
       });
 
       if (colorDiv.length > 0) {
