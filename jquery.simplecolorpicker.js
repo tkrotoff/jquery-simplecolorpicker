@@ -1,10 +1,10 @@
-/**
- * Very simple jQuery Color Picker.
+/*
+ * Very simple jQuery Color Picker
  * https://github.com/tkrotoff/jquery-simplecolorpicker
  *
  * Copyright (C) 2012-2013 Tanguy Krotoff <tkrotoff@gmail.com>
  *
- * Licensed under the MIT license.
+ * Licensed under the MIT license
  */
 
 (function($) {
