@@ -42,7 +42,10 @@
 
       if (self.options.picker) {
         var selectText = self.$select.find('option:selected').text();
-        self.$icon = $('<span class="simplecolorpicker icon" title="' + selectText + '" style="background-color: ' + selectValue + ';" role="button" tabindex="0">'
+        self.$icon = $('<span class="simplecolorpicker icon"'
+                     + ' title="' + selectText + '"'
+                     + ' style="background-color: ' + selectValue + '"'
+                     + ' role="button" tabindex="0">'
                      + fakeText
                      + '</span>').insertAfter(self.$select);
         self.$icon.on('click.' + self.type, $.proxy(self.showPicker, self));
@@ -69,7 +72,11 @@
         if (option.prop('selected') === true || selectValue === color) {
           selected = 'class="selected"';
         }
-        colors += '<div ' + selected + ' title="' + title + '" style="background-color: ' + color + ';" role="button" tabindex="0">'
+        colors += '<div ' + selected
+                + ' title="' + title + '"'
+                + ' style="background-color: ' + color + '"'
+                + ' data-color="' + color + '"'
+                + ' role="button" tabindex="0">'
                 + fakeText
                 + '</div>';
       });
@@ -87,8 +94,7 @@
       var self = this;
 
       var colorDiv = self.$colorList.find('div').filter(function() {
-        var col = $(this).css('background-color');
-        return self.rgb2hex(col) === color;
+        return $(this).data('color') === color;
       });
 
       if (colorDiv.length > 0) {
@@ -120,7 +126,7 @@
      * It also changes the HTML select value, this will emit the 'change' event.
      */
     selectColorDiv: function(colorDiv) {
-      var color = colorDiv.css('background-color');
+      var color = colorDiv.data('color');
       var title = colorDiv.prop('title');
 
       // Mark this div as the selected one
@@ -134,7 +140,7 @@
       }
 
       // Change HTML select value
-      this.$select.val(this.rgb2hex(color));
+      this.$select.val(color);
     },
 
     /**
@@ -157,26 +163,6 @@
     mousedown: function(e) {
       e.stopPropagation();
       e.preventDefault();
-    },
-
-    /**
-     * Converts a RGB color to its hexadecimal value.
-     *
-     * See http://stackoverflow.com/questions/1740700/get-hex-value-rather-than-rgb-value-using-jquery
-     */
-    rgb2hex: function(rgb) {
-      function hex(x) {
-        return ('0' + parseInt(x, 10).toString(16)).slice(-2);
-      }
-
-      var matches = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-      if (matches === null) {
-        // Fix for Internet Explorer < 9
-        // Variable rgb is already a hexadecimal value
-        return rgb;
-      } else {
-        return '#' + hex(matches[1]) + hex(matches[2]) + hex(matches[3]);
-      }
     },
 
     destroy: function() {
