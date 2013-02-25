@@ -94,6 +94,9 @@ See http://dev.w3.org/html5/markup/input.color.html#input.color
 See [simplecolorpicker directive](http://plnkr.co/edit/rKM3QWXDC3vGVPe3QFWV?p=preview).
 If you find a solution for the `setTimeout()` hack, please tell me.
 
+Here [another directive](http://plnkr.co/edit/zlP0RSH3m0ghsefHeaLI?p=preview) written by [KGZM](https://github.com/KGZM) that re-implements simplecolorpicker.
+For the explanations, read this [Google Groups discussion](https://groups.google.com/d/topic/angular/nBZsvLOZxvI/discussion).
+
 ## Ruby on Rails
 
 A gem is available at https://github.com/tkrotoff/jquery-simplecolorpicker-rails
