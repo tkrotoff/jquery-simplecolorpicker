@@ -44,7 +44,7 @@
         var selectText = self.$select.find('option:selected').text();
         self.$icon = $('<span class="simplecolorpicker icon"'
                      + ' title="' + selectText + '"'
-                     + ' style="background-color: ' + selectValue + '"'
+                     + ' style="background-color: ' + selectValue + ';"'
                      + ' role="button" tabindex="0">'
                      + fakeText
                      + '</span>').insertAfter(self.$select);
@@ -74,7 +74,7 @@
         }
         colors += '<div ' + selected
                 + ' title="' + title + '"'
-                + ' style="background-color: ' + color + '"'
+                + ' style="background-color: ' + color + ';"'
                 + ' data-color="' + color + '"'
                 + ' role="button" tabindex="0">'
                 + fakeText
