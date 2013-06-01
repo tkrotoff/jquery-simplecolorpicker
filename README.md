@@ -46,7 +46,7 @@ Create a HTML select:
 add the plugin files:
 
 ```HTML
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.js"></script>
 <script src="jquery.simplecolorpicker.js"></script>
 
 <link rel="stylesheet" type="text/css" href="jquery.simplecolorpicker.css"/>
