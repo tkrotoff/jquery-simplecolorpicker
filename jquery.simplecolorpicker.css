@@ -78,7 +78,7 @@
   }
 
   .simplecolorpicker.icon,
-  .simplecolorpicker div {
+  .simplecolorpicker span {
     cursor: pointer;
     display: inline-block;
 
@@ -88,11 +88,11 @@
 
     border: 1px solid transparent;
   }
-  .simplecolorpicker div {
+  .simplecolorpicker span {
     margin: 0 4px 4px 0;
   }
 
-  .simplecolorpicker div:hover,
-  .simplecolorpicker div.selected {
+  .simplecolorpicker span:hover,
+  .simplecolorpicker span.selected {
     border: 1px solid black;
   }

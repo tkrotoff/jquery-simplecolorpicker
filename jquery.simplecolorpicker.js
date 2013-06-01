@@ -62,7 +62,7 @@
       }
 
       // Build the list of colors
-      // <div class="selected" title="Green" style="background-color: #7bd148;" role="button"></div>
+      // <span class="selected" title="Green" style="background-color: #7bd148;" role="button"></span>
       var colors = '';
       $('option', self.$select).each(function() {
         var option = $(this);
@@ -72,13 +72,13 @@
         if (option.prop('selected') === true || selectValue === color) {
           selected = 'class="selected"';
         }
-        colors += '<div ' + selected
+        colors += '<span ' + selected
                 + ' title="' + title + '"'
                 + ' style="background-color: ' + color + ';"'
                 + ' data-color="' + color + '"'
                 + ' role="button" tabindex="0">'
                 + fakeText
-                + '</div>';
+                + '</span>';
       });
 
       self.$colorList.html(colors);
@@ -93,12 +93,12 @@
     selectColor: function(color) {
       var self = this;
 
-      var colorDiv = self.$colorList.find('div').filter(function() {
+      var colorSpan = self.$colorList.find('span').filter(function() {
         return $(this).data('color').toLowerCase() === color.toLowerCase();
       });
 
-      if (colorDiv.length > 0) {
-        self.selectColorDiv(colorDiv);
+      if (colorSpan.length > 0) {
+        self.selectColorSpan(colorSpan);
       } else {
         console.error("The given color '" + color + "' could not be found");
       }
@@ -120,18 +120,18 @@
     },
 
     /**
-     * Selects the given div inside $colorList.
+     * Selects the given span inside $colorList.
      *
-     * The given div becomes the selected one.
+     * The given span becomes the selected one.
      * It also changes the HTML select value, this will emit the 'change' event.
      */
-    selectColorDiv: function(colorDiv) {
-      var color = colorDiv.data('color');
-      var title = colorDiv.prop('title');
+    selectColorSpan: function(colorSpan) {
+      var color = colorSpan.data('color');
+      var title = colorSpan.prop('title');
 
-      // Mark this div as the selected one
-      colorDiv.siblings().removeClass('selected');
-      colorDiv.addClass('selected');
+      // Mark this span as the selected one
+      colorSpan.siblings().removeClass('selected');
+      colorSpan.addClass('selected');
 
       if (this.options.picker) {
         this.$icon.css('background-color', color);
@@ -144,14 +144,14 @@
     },
 
     /**
-     * The user clicked on a div inside $colorList.
+     * The user clicked on a span inside $colorList.
      */
     click: function(e) {
       var target = $(e.target);
       if (target.length === 1) {
-        if (target[0].nodeName.toLowerCase() === 'div') {
+        if (target[0].nodeName.toLowerCase() === 'span') {
           // When you click on a color, make it the new selected one
-          this.selectColorDiv(target);
+          this.selectColorSpan(target);
           this.$select.trigger('change');
         }
       }
