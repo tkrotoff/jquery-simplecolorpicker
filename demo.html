@@ -225,7 +225,7 @@ $(document).ready(function() {
     $('#colorpicker-inline').simplecolorpicker('selectColor', '#fbd75b');
   }, 1000);
 
-  $('select[name="colorpicker-inline-background"]').change(function() {
+  $('select[name="colorpicker-inline-background"]').on('change', function() {
     $(document.body).css('background-color', $('select[name="colorpicker-inline-background"]').val());
   });
   setTimeout(function() {
@@ -233,7 +233,7 @@ $(document).ready(function() {
     $('select[name="colorpicker-inline-background"]').simplecolorpicker('selectColor', '#7BD148');
   }, 2000);
 
-  $('select[name="colorpicker-picker-background"]').change(function() {
+  $('select[name="colorpicker-picker-background"]').on('change', function() {
     $(document.body).css('background-color', $('select[name="colorpicker-picker-background"]').val());
   });
   setTimeout(function() {

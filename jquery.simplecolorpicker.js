@@ -41,7 +41,7 @@
       self.$colorList = null;
 
       if (self.options.picker) {
-        var selectText = self.$select.find('option:selected').text();
+        var selectText = self.$select.find('> option:selected').text();
         self.$icon = $('<span class="simplecolorpicker icon"'
                      + ' title="' + selectText + '"'
                      + ' style="background-color: ' + selectValue + ';"'
@@ -63,12 +63,12 @@
 
       // Build the list of colors
       // <span class="selected" title="Green" style="background-color: #7bd148;" role="button"></span>
-      $('option', self.$select).each(function() {
-        var option = $(this);
-        var color = option.val();
-        var title = option.text();
+      self.$select.find('> option').each(function() {
+        var $option = $(this);
+        var color = $option.val();
+        var title = $option.text();
         var selected = '';
-        if (option.prop('selected') === true || selectValue === color) {
+        if ($option.prop('selected') === true || selectValue === color) {
           selected = 'class="selected"';
         }
 
@@ -92,12 +92,12 @@
     selectColor: function(color) {
       var self = this;
 
-      var colorSpan = self.$colorList.find('span').filter(function() {
+      var $colorSpan = self.$colorList.find('> span').filter(function() {
         return $(this).data('color').toLowerCase() === color.toLowerCase();
       });
 
-      if (colorSpan.length > 0) {
-        self.selectColorSpan(colorSpan);
+      if ($colorSpan.length > 0) {
+        self.selectColorSpan($colorSpan);
       } else {
         console.error("The given color '" + color + "' could not be found");
       }
@@ -124,13 +124,13 @@
      * The given span becomes the selected one.
      * It also changes the HTML select value, this will emit the 'change' event.
      */
-    selectColorSpan: function(colorSpan) {
-      var color = colorSpan.data('color');
-      var title = colorSpan.prop('title');
+    selectColorSpan: function($colorSpan) {
+      var color = $colorSpan.data('color');
+      var title = $colorSpan.prop('title');
 
       // Mark this span as the selected one
-      colorSpan.siblings().removeClass('selected');
-      colorSpan.addClass('selected');
+      $colorSpan.siblings().removeClass('selected');
+      $colorSpan.addClass('selected');
 
       if (this.options.picker) {
         this.$icon.css('background-color', color);
