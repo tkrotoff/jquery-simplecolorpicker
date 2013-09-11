@@ -63,7 +63,6 @@
 
       // Build the list of colors
       // <span class="selected" title="Green" style="background-color: #7bd148;" role="button"></span>
-      var colors = '';
       $('option', self.$select).each(function() {
         var option = $(this);
         var color = option.val();
@@ -72,17 +71,17 @@
         if (option.prop('selected') === true || selectValue === color) {
           selected = 'class="selected"';
         }
-        colors += '<span ' + selected
-                + ' title="' + title + '"'
-                + ' style="background-color: ' + color + ';"'
-                + ' data-color="' + color + '"'
-                + ' role="button" tabindex="0">'
-                + fakeText
-                + '</span>';
-      });
 
-      self.$colorList.html(colors);
-      self.$colorList.on('click.' + self.type, $.proxy(self.click, self));
+        var $colorSpan = $('<span ' + selected
+                        + ' title="' + title + '"'
+                        + ' style="background-color: ' + color + ';"'
+                        + ' data-color="' + color + '"'
+                        + ' role="button" tabindex="0">'
+                        + fakeText
+                        + '</span>');
+        self.$colorList.append($colorSpan);
+        $colorSpan.on('click.' + self.type, $.proxy(self.colorSpanClicked, self));
+      });
     },
 
     /**
@@ -144,17 +143,12 @@
     },
 
     /**
-     * The user clicked on a span inside $colorList.
+     * The user clicked on a color inside $colorList.
      */
-    click: function(e) {
-      var target = $(e.target);
-      if (target.length === 1) {
-        if (target[0].nodeName.toLowerCase() === 'span') {
-          // When you click on a color, make it the new selected one
-          this.selectColorSpan(target);
-          this.$select.trigger('change');
-        }
-      }
+    colorSpanClicked: function(e) {
+      // When a color is clicked, make it the new selected one
+      this.selectColorSpan($(e.target));
+      this.$select.trigger('change');
     },
 
     /**
