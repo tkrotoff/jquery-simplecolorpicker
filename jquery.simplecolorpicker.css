@@ -96,3 +96,9 @@
   .simplecolorpicker span.selected {
     border: 1px solid black;
   }
+  
+  .simplecolorpicker span[data-disabled="true"] {
+	  text-shadow: 1px 1px 1px rgb(204, 204, 204);
+	  color: #666;
+	  cursor: not-allowed;
+  }
