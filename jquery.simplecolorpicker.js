@@ -62,25 +62,33 @@
       }
 
       // Build the list of colors
-      // <span class="selected" title="Green" style="background-color: #7bd148;" role="button"></span>
+      // <span class="color selected" title="Green" style="background-color: #7bd148;" role="button"></span>
       self.$select.find('> option').each(function() {
         var $option = $(this);
         var color = $option.val();
         var title = $option.text();
+
         var selected = '';
         if ($option.prop('selected') === true || selectValue === color) {
-          selected = 'class="selected"';
+          selected = ' selected';
         }
 
-        var $colorSpan = $('<span ' + selected
-                        + ' title="' + title + '"'
-                        + ' style="background-color: ' + color + ';"'
-                        + ' data-color="' + color + '"'
-                        + ' role="button" tabindex="0">'
-                        + fakeText
-                        + '</span>');
+        var $colorSpan = $('<span class="color' + selected + '"'
+                         + ' title="' + title + '"'
+                         + ' style="background-color: ' + color + ';"'
+                         + ' data-color="' + color + '"'
+                         + ' role="button" tabindex="0">'
+                         + fakeText
+                         + '</span>');
+
         self.$colorList.append($colorSpan);
         $colorSpan.on('click.' + self.type, $.proxy(self.colorSpanClicked, self));
+
+        var $next = $option.next();
+        if ($next.is('optgroup') === true) {
+          // Vertical break, like hr
+          self.$colorList.append('<span class="vr"></span>');
+        }
       });
     },
 
@@ -92,7 +100,7 @@
     selectColor: function(color) {
       var self = this;
 
-      var $colorSpan = self.$colorList.find('> span').filter(function() {
+      var $colorSpan = self.$colorList.find('> span.color').filter(function() {
         return $(this).data('color').toLowerCase() === color.toLowerCase();
       });
 
