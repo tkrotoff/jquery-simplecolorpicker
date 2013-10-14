@@ -40,7 +40,7 @@
 
       self.$colorList = null;
 
-      if (self.options.picker) {
+      if (self.options.picker === true) {
         var selectText = self.$select.find('> option:selected').text();
         self.$icon = $('<span class="simplecolorpicker icon"'
                      + ' title="' + selectText + '"'
@@ -112,10 +112,9 @@
     },
 
     showPicker: function() {
-      var bootstrapArrowWidth = 16; // Empirical value
       var pos = this.$icon.offset();
       this.$picker.css({
-        left: pos.left + this.$icon.width() / 2 - bootstrapArrowWidth, // Middle of the icon
+        left: pos.left - 5, // Remove some pixels due to the "blue" border
         top: pos.top + this.$icon.outerHeight()
       });
 
@@ -140,7 +139,7 @@
       $colorSpan.siblings().removeClass('selected');
       $colorSpan.addClass('selected');
 
-      if (this.options.picker) {
+      if (this.options.picker === true) {
         this.$icon.css('background-color', color);
         this.$icon.prop('title', title);
         this.hidePicker();
@@ -168,7 +167,7 @@
     },
 
     destroy: function() {
-      if (this.options.picker) {
+      if (this.options.picker === true) {
         this.$icon.off('.' + this.type);
         this.$icon.remove();
         $(document).off('.' + this.type);

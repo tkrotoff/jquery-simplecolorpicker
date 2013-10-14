@@ -5,12 +5,11 @@
   <title>Color picker for jQuery</title>
   <meta name="description" content="A very simple jQuery color picker plugin."/>
 
-  <link rel="stylesheet" type="text/css" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css"/>
-  <link rel="stylesheet" type="text/css" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css"/>
+  <link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.css"/>
   <link rel="stylesheet" type="text/css" href="jquery.simplecolorpicker.css"/>
 </head>
 
-<body>
+<body style="padding: 15px;">
 
 <!-- Button to init the jQuery plugin -->
 <button id="init" class="btn btn-primary">Init the jQuery plugin</button>
@@ -21,69 +20,68 @@
 <br/><br/>
 
 <form class="form-horizontal">
-  <fieldset>
-    <legend>Twitter Bootstrap form</legend>
-    <div class="control-group">
-      <label class="control-label" for="input01">Text input</label>
-      <div class="controls">
-        <input type="text" class="input-xlarge" id="input01">
-      </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="input01">Text input</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="input01">
     </div>
-    <div class="control-group">
-      <label class="control-label" for="optionsCheckbox">Checkbox</label>
-      <div class="controls">
-        <label class="checkbox">
-          <input type="checkbox" id="optionsCheckbox" value="option1">
-          Option one
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Option one
         </label>
       </div>
     </div>
-    <div class="control-group">
-      <label class="control-label" for="colorpicker-inline">Select list</label>
-      <div class="controls">
-        <select name="colorpicker-inline" id="colorpicker-inline">
-          <!-- Colors from Google Calendar -->
-          <option value="#7bd148">Green</option>
-          <option value="#5484ed">Bold blue</option>
-          <optgroup label="----------"></optgroup>
-          <option value="#a4bdfc">Blue</option>
-          <option value="#46d6db">Turquoise</option>
-          <option value="#7ae7bf">Light green</option>
-          <option value="#51b749">Bold green</option>
-          <option value="#fbd75b">Yellow</option>
-          <option value="#ffb878">Orange</option>
-          <option value="#ff887c">Red</option>
-          <option value="#dc2127">Bold red</option>
-          <option value="#dbadff">Purple</option>
-          <option value="#e1e1e1">Gray</option>
-        </select>
-        &lt;== Should select #fbd75b after 1 second
-      </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="colorpicker-inline">Select list</label>
+    <div class="col-sm-6">
+      <select name="colorpicker-inline" id="colorpicker-inline" class="form-control">
+        <!-- Colors from Google Calendar -->
+        <option value="#7bd148">Green</option>
+        <option value="#5484ed">Bold blue</option>
+        <optgroup label="----------"></optgroup>
+        <option value="#a4bdfc">Blue</option>
+        <option value="#46d6db">Turquoise</option>
+        <option value="#7ae7bf">Light green</option>
+        <option value="#51b749">Bold green</option>
+        <option value="#fbd75b">Yellow</option>
+        <option value="#ffb878">Orange</option>
+        <option value="#ff887c">Red</option>
+        <option value="#dc2127">Bold red</option>
+        <option value="#dbadff">Purple</option>
+        <option value="#e1e1e1">Gray</option>
+      </select>
+      &lt;== Should select #fbd75b after 1 second
     </div>
-    <div class="control-group">
-      <label class="control-label" for="multiSelect">Multicon-select</label>
-      <div class="controls">
-        <select multiple="multiple" id="multiSelect">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="multiSelect">Multicon-select</label>
+    <div class="col-sm-6">
+      <select multiple id="multiSelect" class="form-control">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
     </div>
-    <div class="control-group">
-      <label class="control-label" for="fileInput">File input</label>
-      <div class="controls">
-        <input class="input-file" id="fileInput" type="file">
-      </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="fileInput">File input</label>
+    <div class="col-sm-6">
+      <input id="fileInput" type="file">
     </div>
+  </div>
 
-    <div class="form-actions">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
       <button type="submit" class="btn btn-primary">Save changes</button>
-      <button class="btn">Cancel</button>
+      <button class="btn btn-default">Cancel</button>
     </div>
-  </fieldset>
+  </div>
 </form>
 
 Pick a color:
@@ -168,56 +166,59 @@ Change background color:
 <br/><br/>
 
 <!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+<a href="#myModal" class="btn btn-primary" data-toggle="modal">Launch demo modal</a>
 
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    Pick a color:
-    <select name="colorpicker-inline">
-      <option value="#7bd148">Green</option>
-      <option value="#5484ed">Bold blue</option>
-      <option value="#a4bdfc">Blue</option>
-      <option value="#46d6db">Turquoise</option>
-      <option value="#7ae7bf">Light green</option>
-      <option value="#51b749">Bold green</option>
-      <option value="#fbd75b">Yellow</option>
-      <option value="#ffb878">Orange</option>
-      <option value="#ff887c">Red</option>
-      <option value="#dc2127">Bold red</option>
-      <option value="#dbadff">Purple</option>
-      <option value="#e1e1e1">Gray</option>
-    </select>
-    <br/><br/>
-    Pick another color:
-    <select name="colorpicker-picker">
-      <option value="#7bd148">Green</option>
-      <option value="#5484ed">Bold blue</option>
-      <option value="#a4bdfc">Blue</option>
-      <option value="#46d6db">Turquoise</option>
-      <option value="#7ae7bf">Light green</option>
-      <option value="#51b749">Bold green</option>
-      <option value="#fbd75b">Yellow</option>
-      <option value="#ffb878">Orange</option>
-      <option value="#ff887c">Red</option>
-      <option value="#dc2127">Bold red</option>
-      <option value="#dbadff">Purple</option>
-      <option value="#e1e1e1">Gray</option>
-    </select>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Pick a color:
+        <select name="colorpicker-inline">
+          <option value="#7bd148">Green</option>
+          <option value="#5484ed">Bold blue</option>
+          <option value="#a4bdfc">Blue</option>
+          <option value="#46d6db">Turquoise</option>
+          <option value="#7ae7bf">Light green</option>
+          <option value="#51b749">Bold green</option>
+          <option value="#fbd75b">Yellow</option>
+          <option value="#ffb878">Orange</option>
+          <option value="#ff887c">Red</option>
+          <option value="#dc2127">Bold red</option>
+          <option value="#dbadff">Purple</option>
+          <option value="#e1e1e1">Gray</option>
+        </select>
+        <br/><br/>
+        Pick another color:
+        <select name="colorpicker-picker">
+          <option value="#7bd148">Green</option>
+          <option value="#5484ed">Bold blue</option>
+          <option value="#a4bdfc">Blue</option>
+          <option value="#46d6db">Turquoise</option>
+          <option value="#7ae7bf">Light green</option>
+          <option value="#51b749">Bold green</option>
+          <option value="#fbd75b">Yellow</option>
+          <option value="#ffb878">Orange</option>
+          <option value="#ff887c">Red</option>
+          <option value="#dc2127">Bold red</option>
+          <option value="#dbadff">Purple</option>
+          <option value="#e1e1e1">Gray</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.js"></script>
-<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
-<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
 <script src="jquery.simplecolorpicker.js"></script>
 
 <script>
