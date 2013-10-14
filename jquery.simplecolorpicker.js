@@ -114,7 +114,8 @@
     showPicker: function() {
       var pos = this.$icon.offset();
       this.$picker.css({
-        left: pos.left - 5, // Remove some pixels due to the "blue" border
+        // Remove some pixels to align the picker icon with the icons inside the dropdown
+        left: pos.left - 6,
         top: pos.top + this.$icon.outerHeight()
       });
 
