@@ -68,7 +68,7 @@
 }
 
 .simplecolorpicker span.color.selected {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIzLjUsNC40IDEsNi43IDYuMiwxMS43IDE1LDMuMyAxMi41LDEgNi4yLDciLz48L3N2Zz4=');
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIuODc3IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwb2x5Z29uIGZpbGw9IiNmZmYiIHBvaW50cz0iMi44NDcsNC4wNTggMCw2LjkwNiA1Ljk3MCwxMi44NzcgMTYsMi44NDcgMTMuMTUyLDAgNS45NzAsNy4xODEiLz48L3N2Zz4=');
   background-repeat: no-repeat;
   background-position: center;
 }
