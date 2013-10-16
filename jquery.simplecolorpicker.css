@@ -62,15 +62,28 @@
   border: 1px solid transparent;
 }
 
+.simplecolorpicker.icon:after,
+.simplecolorpicker span.color:after {
+  content: '\00a0\00a0\00a0\00a0'; /* Spaces */
+}
+
 .simplecolorpicker span.color:hover,
 .simplecolorpicker span.color.selected {
   border: 1px solid #222; /* @gray-dark */
 }
+.simplecolorpicker span.color.selected:after {
+  /* Taken from glyphicon class. */
+  position: relative;
+  top: 1px;
+  font-family: 'Glyphicons Halflings';
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
 
-.simplecolorpicker span.color.selected {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIuODc3IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwb2x5Z29uIGZpbGw9IiNmZmYiIHBvaW50cz0iMi44NDcsNC4wNTggMCw2LjkwNiA1Ljk3MCwxMi44NzcgMTYsMi44NDcgMTMuMTUyLDAgNS45NzAsNy4xODEiLz48L3N2Zz4=');
-  background-repeat: no-repeat;
-  background-position: center;
+  content: '\e013'; /* Ok/check mark */
+  color: #fff;
+
+  margin-right: 1px;
+  margin-left: 1px;
 }
 
 /* Vertical separator, replaces optgroup. */

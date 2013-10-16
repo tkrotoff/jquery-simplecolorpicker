@@ -34,10 +34,6 @@
 
       self.$select.hide();
 
-      // Trick: fix span alignment
-      // When a span does not contain any text, its alignment is not correct
-      var fakeText = '&nbsp;&nbsp;&nbsp;&nbsp;';
-
       self.$colorList = null;
 
       if (self.options.picker === true) {
@@ -46,7 +42,6 @@
                      + ' title="' + selectText + '"'
                      + ' style="background-color: ' + selectValue + ';"'
                      + ' role="button" tabindex="0">'
-                     + fakeText
                      + '</span>').insertAfter(self.$select);
         self.$icon.on('click.' + self.type, $.proxy(self.showPicker, self));
 
@@ -78,7 +73,6 @@
                          + ' style="background-color: ' + color + ';"'
                          + ' data-color="' + color + '"'
                          + ' role="button" tabindex="0">'
-                         + fakeText
                          + '</span>');
 
         self.$colorList.append($colorSpan);
