@@ -72,8 +72,6 @@
         if ($option.prop('selected') === true || selectValue === color) {
           selected = 'class="selected"';
         }
-		
-		fakeText = (isDisabled === true) ? '&nbsp;&times;&nbsp;' : '&nbsp;&nbsp;&nbsp;&nbsp;';
 
         var $colorSpan = $('<span ' + selected
                         + ' title="' + title + '"'
@@ -81,7 +79,7 @@
                         + ' data-color="' + color + '"'
 						+ ' data-disabled="' + isDisabled + '"'
                         + ' role="button" tabindex="0">'
-                        + fakeText
+                        + '&nbsp;&nbsp;&nbsp;&nbsp;'
                         + '</span>');
         self.$colorList.append($colorSpan);
         $colorSpan.on('click.' + self.type, $.proxy(self.colorSpanClicked, self));
