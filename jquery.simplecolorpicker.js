@@ -150,9 +150,7 @@
      */
     colorSpanClicked: function(e) {
       // When a color is clicked, make it the new selected one (unless disabled)
-      if ($(e.target).data('disabled')) {
-        return false;
-      } else {
+      if ($(e.target).data('disabled') === false) {
         this.selectColorSpan($(e.target));
         this.$select.trigger('change');
       }
