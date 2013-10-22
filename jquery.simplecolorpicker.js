@@ -29,7 +29,6 @@
       self.type = type;
 
       self.$select = $(select);
-      var selectValue = self.$select.val();
       self.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
 
       self.$select.hide();
@@ -40,7 +39,7 @@
         var selectText = self.$select.find('> option:selected').text();
         self.$icon = $('<span class="simplecolorpicker icon"'
                      + ' title="' + selectText + '"'
-                     + ' style="background-color: ' + selectValue + ';"'
+                     + ' style="background-color: ' + self.$select.val() + ';"'
                      + ' role="button" tabindex="0">'
                      + '</span>').insertAfter(self.$select);
         self.$icon.on('click.' + self.type, $.proxy(self.showPicker, self));
@@ -61,27 +60,36 @@
       self.$select.find('> option').each(function() {
         var $option = $(this);
         var color = $option.val();
-        var title = $option.text();
 
-        // Add class="selected" if the color is selected
-        var selected = '';
-        if ($option.is(':selected') === true || selectValue === color) {
-          selected = ' selected';
-        }
-
+        var isSelected = $option.is(':selected');
         var isDisabled = $option.is(':disabled');
 
-        // Add role="button" and tabindex="0" if the color is not disabled
+        var selected = '';
+        if (isSelected === true) {
+          selected = ' data-selected';
+        }
+
+        var disabled = '';
+        if (isDisabled === true) {
+          disabled = ' data-disabled';
+        }
+
+        var title = '';
+        if (isDisabled === false) {
+          title = ' title="' + $option.text() + '"';
+        }
+
         var role = '';
         if (isDisabled === false) {
           role = ' role="button" tabindex="0"';
         }
 
-        var $colorSpan = $('<span class="color' + selected + '"'
-                         + ' title="' + title + '"'
+        var $colorSpan = $('<span class="color"'
+                         + title
                          + ' style="background-color: ' + color + ';"'
                          + ' data-color="' + color + '"'
-                         + ' data-disabled="' + isDisabled + '"'
+                         + selected
+                         + disabled
                          + role + '>'
                          + '</span>');
 
@@ -141,8 +149,8 @@
       var title = $colorSpan.prop('title');
 
       // Mark this span as the selected one
-      $colorSpan.siblings().removeClass('selected');
-      $colorSpan.addClass('selected');
+      $colorSpan.siblings().removeAttr('data-selected');
+      $colorSpan.attr('data-selected', '');
 
       if (this.options.picker === true) {
         this.$icon.css('background-color', color);
@@ -159,7 +167,7 @@
      */
     colorSpanClicked: function(e) {
       // When a color is clicked, make it the new selected one (unless disabled)
-      if ($(e.target).data('disabled') === false) {
+      if ($(e.target).is('[data-disabled]') === false) {
         this.selectColorSpan($(e.target));
         this.$select.trigger('change');
       }

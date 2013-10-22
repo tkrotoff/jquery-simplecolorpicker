@@ -56,9 +56,9 @@
 
 .simplecolorpicker.icon,
 .simplecolorpicker span.color {
-  cursor: pointer;
   display: inline-block;
 
+  cursor: pointer;
   border: 1px solid transparent;
 }
 
@@ -68,10 +68,10 @@
 }
 
 .simplecolorpicker span.color:hover,
-.simplecolorpicker span.color.selected {
+.simplecolorpicker span.color[data-selected] {
   border: 1px solid #222; /* @gray-dark */
 }
-.simplecolorpicker span.color.selected:after {
+.simplecolorpicker span.color[data-selected]:after {
   /* Taken from glyphicon class. */
   position: relative;
   top: 1px;
@@ -86,7 +86,7 @@
   margin-left: 1px;
 }
 
-.simplecolorpicker span.color[data-disabled='true'] {
+.simplecolorpicker span.color[data-disabled] {
   cursor: not-allowed;
   border: 1px solid transparent;
 }
