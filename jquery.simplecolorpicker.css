@@ -67,8 +67,14 @@
   content: '\00a0\00a0\00a0\00a0'; /* Spaces */
 }
 
+.simplecolorpicker span.color[data-disabled]:hover {
+  cursor: not-allowed;
+  border: 1px solid transparent;
+}
+
 .simplecolorpicker span.color:hover,
-.simplecolorpicker span.color[data-selected] {
+.simplecolorpicker span.color[data-selected],
+.simplecolorpicker span.color[data-selected]:hover {
   border: 1px solid #222; /* @gray-dark */
 }
 .simplecolorpicker span.color[data-selected]:after {
@@ -84,11 +90,6 @@
 
   margin-right: 1px;
   margin-left: 1px;
-}
-
-.simplecolorpicker span.color[data-disabled] {
-  cursor: not-allowed;
-  border: 1px solid transparent;
 }
 
 /* Vertical separator, replaces optgroup. */
