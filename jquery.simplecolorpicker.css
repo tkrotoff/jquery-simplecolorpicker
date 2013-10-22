@@ -78,6 +78,9 @@
   border: 1px solid #222; /* @gray-dark */
 }
 .simplecolorpicker span.color[data-selected]:after {
+  color: #fff;
+}
+.simplecolorpicker.glyphicons span.color[data-selected]:after {
   /* Taken from glyphicon class. */
   position: relative;
   top: 1px;
@@ -86,7 +89,6 @@
   -webkit-font-smoothing: antialiased;
 
   content: '\e013'; /* Ok/check mark */
-  color: #fff;
 
   margin-right: 1px;
   margin-left: 1px;

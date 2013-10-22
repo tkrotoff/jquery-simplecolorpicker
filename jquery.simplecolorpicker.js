@@ -51,7 +51,12 @@
         $(document).on('mousedown.' + self.type, $.proxy(self.hidePicker, self));
         self.$picker.on('mousedown.' + self.type, $.proxy(self.mousedown, self));
       } else {
-        self.$inline = $('<span class="simplecolorpicker inline"></span>').insertAfter(self.$select);
+        var theme = '';
+        if (self.$select.data('simplecolorpicker-theme') !== undefined) {
+          theme = ' ' + self.$select.data('simplecolorpicker-theme');
+        }
+
+        self.$inline = $('<span class="simplecolorpicker inline' + theme + '"></span>').insertAfter(self.$select);
         self.$colorList = self.$inline;
       }
 
