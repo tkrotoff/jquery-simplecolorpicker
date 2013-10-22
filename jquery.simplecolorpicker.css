@@ -86,6 +86,11 @@
   margin-left: 1px;
 }
 
+.simplecolorpicker span.color[data-disabled='true'] {
+  cursor: not-allowed;
+  border: 1px solid transparent;
+}
+
 /* Vertical separator, replaces optgroup. */
 .simplecolorpicker span.vr {
   border-left: 1px solid #222; /* @gray-dark */

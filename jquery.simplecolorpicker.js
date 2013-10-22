@@ -62,7 +62,7 @@
         var $option = $(this);
         var color = $option.val();
         var title = $option.text();
-
+        var isDisabled = $option.is(':disabled');
         var selected = '';
         if ($option.prop('selected') === true || selectValue === color) {
           selected = ' selected';
@@ -72,6 +72,7 @@
                          + ' title="' + title + '"'
                          + ' style="background-color: ' + color + ';"'
                          + ' data-color="' + color + '"'
+                         + ' data-disabled="' + isDisabled + '"'
                          + ' role="button" tabindex="0">'
                          + '</span>');
 
@@ -148,9 +149,13 @@
      * The user clicked on a color inside $colorList.
      */
     colorSpanClicked: function(e) {
-      // When a color is clicked, make it the new selected one
-      this.selectColorSpan($(e.target));
-      this.$select.trigger('change');
+      // When a color is clicked, make it the new selected one (unless disabled)
+      if ($(e.target).data('disabled')) {
+        return false;
+      } else {
+        this.selectColorSpan($(e.target));
+        this.$select.trigger('change');
+      }
     },
 
     /**
