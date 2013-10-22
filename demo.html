@@ -51,10 +51,11 @@
         <option value="#ffb878" disabled>Orange</option>
         <option value="#ff887c">Red</option>
         <option value="#dc2127">Bold red</option>
+        <optgroup label="----------"></optgroup>
         <option value="#dbadff">Purple</option>
         <option value="#e1e1e1">Gray</option>
       </select>
-      &lt;== Should select #fbd75b after 1 second
+      &lt;== Should select #fbd75b after 5 seconds
     </div>
   </div>
   <div class="form-group">
@@ -129,7 +130,7 @@ Change background color:
   <option value="#cd74e6">#cd74e6</option>
   <option value="#a47ae2">#a47ae2</option>
 </select>
-&lt;== Should select #7bd148 after 2 seconds
+&lt;== Should select #7bd148 after 6 seconds
 
 <br/><br/>
 
@@ -161,7 +162,7 @@ Change background color:
   <option value="#cd74e6">#cd74e6</option>
   <option value="#a47ae2">#a47ae2</option>
 </select>
-&lt;== Should generate a JavaScript error after 3 seconds
+&lt;== Should generate a JavaScript error after 7 seconds
 
 <br/><br/>
 
@@ -225,7 +226,7 @@ Change background color:
 $(document).ready(function() {
   setTimeout(function() {
     $('#colorpicker-inline').simplecolorpicker('selectColor', '#fbd75b');
-  }, 1000);
+  }, 5000);
 
   $('select[name="colorpicker-inline-background"]').on('change', function() {
     $(document.body).css('background-color', $('select[name="colorpicker-inline-background"]').val());
@@ -233,7 +234,7 @@ $(document).ready(function() {
   setTimeout(function() {
     // colorpicker-inline-background contains 3 times the color #7BD148
     $('select[name="colorpicker-inline-background"]').simplecolorpicker('selectColor', '#7BD148');
-  }, 2000);
+  }, 6000);
 
   $('select[name="colorpicker-picker-background"]').on('change', function() {
     $(document.body).css('background-color', $('select[name="colorpicker-picker-background"]').val());
@@ -241,7 +242,7 @@ $(document).ready(function() {
   setTimeout(function() {
     // Generates a JavaScript error
     $('select[name="colorpicker-picker-background"]').simplecolorpicker('selectColor', 'unknown');
-  }, 3000);
+  }, 7000);
 
   $('#init').on('click', function() {
     $('select[name="colorpicker-inline"]').simplecolorpicker();
