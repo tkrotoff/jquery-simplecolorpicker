@@ -62,10 +62,19 @@
         var $option = $(this);
         var color = $option.val();
         var title = $option.text();
-        var isDisabled = $option.is(':disabled');
+
+        // Add class="selected" if the color is selected
         var selected = '';
-        if ($option.prop('selected') === true || selectValue === color) {
+        if ($option.is(':selected') === true || selectValue === color) {
           selected = ' selected';
+        }
+
+        var isDisabled = $option.is(':disabled');
+
+        // Add role="button" and tabindex="0" if the color is not disabled
+        var role = '';
+        if (isDisabled === false) {
+          role = ' role="button" tabindex="0"';
         }
 
         var $colorSpan = $('<span class="color' + selected + '"'
@@ -73,7 +82,7 @@
                          + ' style="background-color: ' + color + ';"'
                          + ' data-color="' + color + '"'
                          + ' data-disabled="' + isDisabled + '"'
-                         + ' role="button" tabindex="0">'
+                         + role + '>'
                          + '</span>');
 
         self.$colorList.append($colorSpan);
