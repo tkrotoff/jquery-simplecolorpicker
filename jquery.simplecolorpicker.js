@@ -29,9 +29,14 @@
       self.type = type;
 
       self.$select = $(select);
+      self.$select.hide();
+
       self.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
 
-      self.$select.hide();
+      var theme = '';
+      if (self.$select.data('simplecolorpicker-theme') !== undefined) {
+        theme = ' ' + self.$select.data('simplecolorpicker-theme');
+      }
 
       self.$colorList = null;
 
@@ -44,18 +49,13 @@
                      + '</span>').insertAfter(self.$select);
         self.$icon.on('click.' + self.type, $.proxy(self.showPicker, self));
 
-        self.$picker = $('<span class="simplecolorpicker picker"></span>').appendTo(document.body);
+        self.$picker = $('<span class="simplecolorpicker picker' + theme + '"></span>').appendTo(document.body);
         self.$colorList = self.$picker;
 
         // Hide picker when clicking outside
         $(document).on('mousedown.' + self.type, $.proxy(self.hidePicker, self));
         self.$picker.on('mousedown.' + self.type, $.proxy(self.mousedown, self));
       } else {
-        var theme = '';
-        if (self.$select.data('simplecolorpicker-theme') !== undefined) {
-          theme = ' ' + self.$select.data('simplecolorpicker-theme');
-        }
-
         self.$inline = $('<span class="simplecolorpicker inline' + theme + '"></span>').insertAfter(self.$select);
         self.$colorList = self.$inline;
       }
