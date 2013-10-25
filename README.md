@@ -5,21 +5,9 @@ The source code only requires jQuery and is about 200 lines of JavaScript and 10
 
 See the [online demo](http://plnkr.co/edit/VVclW0?p=preview).
 
-* By default it shows the colors inline:
+![simplecolorpicker-inline.png](http://img11.hostingpics.net/pics/75504320131025121603ColorpickerforjQuery.png)
 
-![simplecolorpicker-inline.png](http://img15.hostingpics.net/pics/179473simplecolorpickerinline.png)
-
-* You can show the colors inside a picker:
-
-![simplecolorpicker-picker.png](http://img15.hostingpics.net/pics/748637simplecolorpickerpicker.png)
-
-* It integrates well with Twitter Bootstrap if you use this framework:
-
-![simplecolorpicker-inline-bootstrap.png](http://img15.hostingpics.net/pics/516842simplecolorpickerinlinebootstrap.png)
-
-* And the whole is unobtrusive and based on the regular HTML select tag:
-
-![simplecolorpicker-select.png](http://img15.hostingpics.net/pics/368680simplecolorpickerselect.png)
+![simplecolorpicker-picker.png](http://img11.hostingpics.net/pics/71709820131025122115ColorpickerforjQuery.png)
 
 ## How to use
 
@@ -27,7 +15,6 @@ Create a HTML select:
 
 ```HTML
 <select name="colorpicker">
-  <!-- Colors from Google Calendar -->
   <option value="#7bd148">Green</option>
   <option value="#5484ed">Bold blue</option>
   <option value="#a4bdfc">Blue</option>
@@ -46,10 +33,10 @@ Create a HTML select:
 add the plugin files:
 
 ```HTML
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
 <script src="jquery.simplecolorpicker.js"></script>
 
-<link rel="stylesheet" type="text/css" href="jquery.simplecolorpicker.css"/>
+<link rel="stylesheet" href="jquery.simplecolorpicker.css">
 ```
 
 then call the plugin:
@@ -72,12 +59,14 @@ $('select[name="colorpicker"]').simplecolorpicker({
 
 ### Options
 
+- theme: use the font of your choice for the Ok/check mark (default: '')
 - picker: show the colors inside a picker instead of inline (default: false)
-- delay: show and hide animation delay (default: 0)
+- pickerDelay: show and hide animation delay in milliseconds (default: 0)
 
 ## Browser support
 
 Simplecolorpicker supports all modern browsers starting with Internet Explorer 8 included.
+It is recommended to not use any font theme with IE8.
 
 ## HTML5 new color input
 
@@ -88,6 +77,12 @@ most of the time the widget is less user-friendly than the one provided by simpl
 See http://slides.html5rocks.com/#new-form-types
 
 See http://dev.w3.org/html5/markup/input.color.html#input.color
+
+## Bower
+
+```
+bower install jquery-simplecolorpicker
+```
 
 ## AngularJS directive
 

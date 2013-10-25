@@ -33,13 +33,6 @@
 
       self.options = $.extend({}, $.fn.simplecolorpicker.defaults, options);
 
-      if (self.options.theme === '') {
-        var theme = self.$select.data('simplecolorpicker-theme');
-        if (theme !== undefined) {
-          self.options.theme = theme;
-        }
-      }
-
       self.$colorList = null;
 
       if (self.options.picker === true) {
@@ -138,11 +131,11 @@
         top: pos.top + this.$icon.outerHeight()
       });
 
-      this.$picker.show(this.options.delay);
+      this.$picker.show(this.options.pickerDelay);
     },
 
     hidePicker: function() {
-      this.$picker.hide(this.options.delay);
+      this.$picker.hide(this.options.pickerDelay);
     },
 
     /**
@@ -229,14 +222,14 @@
    * Default options.
    */
   $.fn.simplecolorpicker.defaults = {
-    // Animation delay
-    delay: 0,
+    // No theme by default
+    theme: '',
 
     // Show the picker or make it inline
     picker: false,
 
-    // No theme by default
-    theme: ''
+    // Animation delay in milliseconds
+    pickerDelay: 0
   };
 
 })(jQuery);
