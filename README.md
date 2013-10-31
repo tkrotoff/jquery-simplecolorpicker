@@ -59,9 +59,9 @@ $('select[name="colorpicker"]').simplecolorpicker({
 
 ### Options
 
-- theme: use the font of your choice for the Ok/check mark (default: '')
-- picker: show the colors inside a picker instead of inline (default: false)
-- pickerDelay: show and hide animation delay in milliseconds (default: 0)
+- theme: font to use for the ok/check mark (default: `''`), available themes: [`regularfont`](https://github.com/tkrotoff/jquery-simplecolorpicker/blob/master/jquery.simplecolorpicker-regularfont.css), [`fontawesome`](https://github.com/tkrotoff/jquery-simplecolorpicker/blob/master/jquery.simplecolorpicker-fontawesome.css), [`glyphicons`](https://github.com/tkrotoff/jquery-simplecolorpicker/blob/master/jquery.simplecolorpicker-glyphicons.css)
+- picker: show the colors inside a picker instead of inline (default: `false`)
+- pickerDelay: show and hide animation delay in milliseconds (default: `0`)
 
 ## Browser support
 
