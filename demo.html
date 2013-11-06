@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
   <link rel="stylesheet" href="jquery.simplecolorpicker.css">
-  <link rel="stylesheet" href="jquery.simplecolorpicker-nofont.css">
+  <link rel="stylesheet" href="jquery.simplecolorpicker-regularfont.css">
   <link rel="stylesheet" href="jquery.simplecolorpicker-glyphicons.css">
   <link rel="stylesheet" href="jquery.simplecolorpicker-fontawesome.css">
 </head>
@@ -40,9 +40,9 @@ colorpicker-notheme:
   <option value="#e1e1e1">Gray</option>
 </select>
 
-<h3>'nofont' theme</h3>
-colorpicker-nofont:
-<select name="colorpicker-nofont">
+<h3>'regularfont' theme</h3>
+colorpicker-regularfont:
+<select name="colorpicker-regularfont">
   <option value="#7bd148">Green</option>
   <option value="#5484ed">Bold blue</option>
   <option value="#a4bdfc">Blue</option>
@@ -483,7 +483,7 @@ $(document).ready(function() {
 
   $('#init').on('click', function() {
     $('select[name="colorpicker-notheme"]').simplecolorpicker();
-    $('select[name="colorpicker-nofont"]').simplecolorpicker({theme: 'nofont'});
+    $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
     $('select[name="colorpicker-glyphicons"]').simplecolorpicker({theme: 'glyphicons'});
     $('select[name="colorpicker-fontawesome"]').simplecolorpicker({theme: 'fontawesome'});
     $('select[name="colorpicker-bootstrap3-form"]').simplecolorpicker({theme: 'glyphicons'});

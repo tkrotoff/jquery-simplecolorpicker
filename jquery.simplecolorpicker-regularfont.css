@@ -1,4 +1,4 @@
-.simplecolorpicker.nofont span.color[data-selected]:after {
+.simplecolorpicker.regularfont span.color[data-selected]:after {
   content: '\2714'; /* Ok/check mark */
 
   margin-right: 2.2px;
