@@ -1,3 +1,5 @@
+**I don't use jquery-simplecolorpicker anymore so I won't update this repository. If you have a well maintained fork, I will be happy to promote it here.**
+
 # Very simple jQuery color picker
 
 Yet another jQuery color picker. This plugin is unobtrusive and integrates well with Twitter Bootstrap (it works just fine without).
