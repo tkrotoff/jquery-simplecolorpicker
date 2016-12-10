@@ -1,0 +1,22 @@
+{
+  "name": "jquery-simplecolorpicker",
+  "version": "0.3.1",
+  "description": "Very simple jQuery color picker",
+  "main": "jquery.simplecolorpicker.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tkrotoff/jquery-simplecolorpicker"
+  },
+  "keywords": [
+    "jQuery",
+    "color",
+    "picker",
+    "colorpicker"
+  ],
+  "author": "Tanguy Krotoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkrotoff/jquery-simplecolorpicker/issues"
+  },
+  "homepage": "https://github.com/tkrotoff/jquery-simplecolorpicker"
+}
