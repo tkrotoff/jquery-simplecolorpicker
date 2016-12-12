@@ -11,6 +11,18 @@ See the [online demo](http://plnkr.co/edit/VVclW0?p=preview).
 
 ![simplecolorpicker-picker.png](http://img11.hostingpics.net/pics/71709820131025122115ColorpickerforjQuery.png)
 
+## npm
+
+```
+npm install jquery-simplecolorpicker
+```
+
+## Bower
+
+```
+bower install jquery-simplecolorpicker
+```
+
 ## How to use
 
 Create a HTML select:
@@ -79,12 +91,6 @@ most of the time the widget is less user-friendly than the one provided by simpl
 See http://slides.html5rocks.com/#new-form-types
 
 See http://dev.w3.org/html5/markup/input.color.html#input.color
-
-## Bower
-
-```
-bower install jquery-simplecolorpicker
-```
 
 ## AngularJS directive
 
