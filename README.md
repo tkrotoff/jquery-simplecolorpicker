@@ -7,9 +7,9 @@ The source code only requires jQuery and is about 200 lines of JavaScript and 10
 
 See the [online demo](http://plnkr.co/edit/VVclW0?p=preview).
 
-![simplecolorpicker-inline.png](http://img11.hostingpics.net/pics/75504320131025121603ColorpickerforjQuery.png)
+![jquery-simplecolorpicker-inline.png](jquery-simplecolorpicker-inline.png)
 
-![simplecolorpicker-picker.png](http://img11.hostingpics.net/pics/71709820131025122115ColorpickerforjQuery.png)
+![jquery-simplecolorpicker-picker.png](jquery-simplecolorpicker-picker.png)
 
 ## npm
 
